@@ -8,8 +8,7 @@
     "start": "cd backend && npm ci && node server-enhanced.js",
     "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
     "install-all": "cd backend && npm install && cd ../frontend && npm install",
-    "deploy": "vercel --prod",
-    "vercel-build": "cd frontend && npm ci && npm run build"
+    "deploy": "vercel --prod"
   },
   "keywords": [
     "career-guidance",
