@@ -26,10 +26,5 @@
   ],
   "env": {
     "NODE_ENV": "production"
-  },
-  "functions": {
-    "backend/server-enhanced.js": {
-      "maxDuration": 30
-    }
   }
 }

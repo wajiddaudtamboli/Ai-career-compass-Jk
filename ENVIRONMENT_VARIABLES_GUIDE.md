@@ -63,8 +63,8 @@ NODE_ENV=production
 PORT=5002
 
 # Google Gemini AI Configuration
-GEMINI_API_KEY=your_actual_gemini_api_key_here
-GOOGLE_GEMINI_API_KEY=your_actual_gemini_api_key_here
+GEMINI_API_KEY=AIzaSyALm_JHvyrOTpIiDZJawtEMLmM3V0EKKMM
+GOOGLE_GEMINI_API_KEY=AIzaSyALm_JHvyrOTpIiDZJawtEMLmM3V0EKKMM
 
 # Clerk Authentication (Optional)
 CLERK_PUBLISHABLE_KEY=pk_live_your_clerk_publishable_key_here
