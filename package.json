@@ -1,12 +1,15 @@
 {
-  "name": "jk-career-navigator-frontend",
+  "name": "jk-career-navigator",
   "version": "1.0.0",
   "description": "AI-powered career guidance platform for Jammu & Kashmir students",
-  "main": "frontend/src/main.jsx",
+  "main": "backend/server-enhanced.js",
   "scripts": {
-    "build": "cd frontend && npm install && npm run build",
-    "start": "cd frontend && npm run preview",
-    "dev": "cd frontend && npm run dev"
+    "build": "cd frontend && npm ci && npm run build",
+    "start": "cd backend && npm ci && node server-enhanced.js",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
+    "install-all": "cd backend && npm install && cd ../frontend && npm install",
+    "deploy": "vercel --prod",
+    "vercel-build": "cd frontend && npm ci && npm run build"
   },
   "keywords": [
     "career-guidance",
@@ -17,5 +20,8 @@
     "nodejs"
   ],
   "author": "Wajid Daud Tamboli",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
 }
