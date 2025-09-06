@@ -1,18 +1,14 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    },
-    {
-      "src": "backend/server-enhanced.js",
-      "use": "@vercel/node"
+  "buildCommand": "cd frontend && npm ci && npm run build",
+  "outputDirectory": "frontend/dist",
+  "installCommand": "npm ci",
+  "functions": {
+    "backend/server-enhanced.js": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 30
     }
-  ],
+  },
   "routes": [
     {
       "src": "/api/(.*)",
@@ -24,12 +20,10 @@
     },
     {
       "src": "/(.*)",
-      "dest": "frontend/$1"
+      "dest": "frontend/dist/$1"
     }
   ],
-  "functions": {
-    "backend/server-enhanced.js": {
-      "maxDuration": 30
-    }
+  "env": {
+    "NODE_ENV": "production"
   }
 }
