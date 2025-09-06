@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create PNG Icon</title>
+</head>
+<body>
+    <h2>Convert SVG to PNG Icon</h2>
+    <canvas id="canvas" width="192" height="192" style="border: 1px solid #ccc;"></canvas>
+    <br><br>
+    <button onclick="createIcon()">Create Icon</button>
+    <br><br>
+    <a id="downloadLink" style="display: none;">Download icon-192.png</a>
+
+    <script>
+        function createIcon() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, 192, 192);
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 192, 192);
+            gradient.addColorStop(0, '#1E40AF');
+            gradient.addColorStop(0.5, '#059669');
+            gradient.addColorStop(1, '#FF8C42');
+            
+            // Draw background circle
+            ctx.fillStyle = gradient;
+            ctx.globalAlpha = 0.1;
+            ctx.beginPath();
+            ctx.arc(96, 96, 85, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Draw border circle
+            ctx.globalAlpha = 1;
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.arc(96, 96, 75, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Draw text
+            ctx.fillStyle = gradient;
+            ctx.font = 'bold 32px Inter, Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('J&K', 96, 70);
+            
+            ctx.font = '16px Inter, Arial, sans-serif';
+            ctx.fillStyle = '#4B5563';
+            ctx.fillText('CAREER', 96, 100);
+            ctx.fillText('NAVIGATOR', 96, 120);
+            
+            // Create download link
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const link = document.getElementById('downloadLink');
+                link.href = url;
+                link.download = 'icon-192.png';
+                link.style.display = 'block';
+                link.textContent = 'Download icon-192.png';
+            });
+        }
+    </script>
+</body>
+</html>

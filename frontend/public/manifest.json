@@ -1,0 +1,34 @@
+{
+  "name": "AI Career Compass J&K",
+  "short_name": "AiCompassJK",
+  "description": "Your AI-Powered Gateway to Educational Excellence and Career Success in Jammu & Kashmir",
+  "icons": [
+    {
+      "src": "/jk-logo.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/jk-logo.svg",
+      "sizes": "512x512", 
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/jk-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#3B82F6",
+  "background_color": "#ffffff",
+  "categories": ["education", "career", "guidance"],
+  "lang": "en",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "prefer_related_applications": false
+}

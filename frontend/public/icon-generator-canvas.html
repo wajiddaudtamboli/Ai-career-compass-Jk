@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Generator</title>
+</head>
+<body>
+    <h2>Generating PWA Icons...</h2>
+    <canvas id="canvas192" width="192" height="192"></canvas>
+    <canvas id="canvas512" width="512" height="512"></canvas>
+    
+    <script>
+        function createIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#1E40AF');
+            gradient.addColorStop(0.5, '#059669');
+            gradient.addColorStop(1, '#FF8C42');
+            
+            // Draw background circle
+            ctx.fillStyle = gradient;
+            ctx.globalAlpha = 0.1;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size * 0.45, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Draw border circle
+            ctx.globalAlpha = 1;
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = size * 0.02;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size * 0.4, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Draw J&K text
+            ctx.fillStyle = gradient;
+            ctx.font = `bold ${size * 0.16}px Inter, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.fillText('J&K', size/2, size * 0.35);
+            
+            // Draw CAREER text
+            ctx.fillStyle = '#4B5563';
+            ctx.font = `500 ${size * 0.08}px Inter, sans-serif`;
+            ctx.fillText('CAREER', size/2, size * 0.5);
+            
+            // Draw NAVIGATOR text
+            ctx.fillText('NAVIGATOR', size/2, size * 0.62);
+            
+            // Convert to blob and download
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `icon-${size}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                console.log(`✅ Generated icon-${size}.png`);
+            }, 'image/png');
+        }
+        
+        // Generate icons when page loads
+        window.onload = function() {
+            createIcon('canvas192', 192);
+            setTimeout(() => createIcon('canvas512', 512), 1000);
+        };
+    </script>
+</body>
+</html>

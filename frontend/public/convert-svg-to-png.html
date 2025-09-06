@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SVG to PNG Converter</title>
+</head>
+<body>
+    <h1>SVG to PNG Converter</h1>
+    <p>Open this file in a browser and click the button to convert the SVG to PNG</p>
+    
+    <svg id="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="192" height="192">
+        <defs>
+            <linearGradient id="jkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#1E40AF;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#059669;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#FF8C42;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        
+        <!-- Background Circle -->
+        <circle cx="50" cy="50" r="45" fill="url(#jkGradient)" opacity="0.1"/>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="url(#jkGradient)" stroke-width="2"/>
+        
+        <!-- J&K Text -->
+        <text x="50" y="35" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="bold" fill="url(#jkGradient)">J&K</text>
+        
+        <!-- AI Career Compass Text -->
+        <text x="50" y="50" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="500" fill="#4B5563">CAREER</text>
+        <text x="50" y="62" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="500" fill="#4B5563">NAVIGATOR</text>
+        
+        <!-- Educational Elements -->
+        <path d="M25 75 L35 70 L45 75 L35 80 Z" fill="#1E40AF" opacity="0.7"/>
+        <path d="M55 75 L65 70 L75 75 L65 80 Z" fill="#059669" opacity="0.7"/>
+        
+        <!-- Connecting dots -->
+        <circle cx="30" cy="45" r="1.5" fill="#FF8C42"/>
+        <circle cx="70" cy="45" r="1.5" fill="#FF8C42"/>
+        <circle cx="50" cy="85" r="1.5" fill="#1E40AF"/>
+    </svg>
+    
+    <br><br>
+    <button onclick="downloadPNG()">Download as PNG (192x192)</button>
+    <br><br>
+    <canvas id="canvas" width="192" height="192" style="border: 1px solid #ccc;"></canvas>
+    
+    <script>
+        function downloadPNG() {
+            const svg = document.getElementById('logo');
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            const svgData = new XMLSerializer().serializeToString(svg);
+            const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
+            const svgUrl = URL.createObjectURL(svgBlob);
+            
+            const img = new Image();
+            img.onload = function() {
+                ctx.clearRect(0, 0, 192, 192);
+                ctx.drawImage(img, 0, 0, 192, 192);
+                
+                canvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'icon-192.png';
+                    a.click();
+                    URL.revokeObjectURL(url);
+                });
+                
+                URL.revokeObjectURL(svgUrl);
+            };
+            img.src = svgUrl;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Generator</title>
+</head>
+<body>
+    <canvas id="canvas192" width="192" height="192" style="border: 1px solid #000; margin: 10px;"></canvas>
+    <canvas id="canvas512" width="512" height="512" style="border: 1px solid #000; margin: 10px;"></canvas>
+    <br>
+    <button onclick="generateIcons()">Generate Icons</button>
+    <br>
+    <a id="download192" style="display:none;">Download 192x192</a>
+    <a id="download512" style="display:none;">Download 512x512</a>
+
+    <script>
+        function generateIcons() {
+            // SVG data
+            const svgData = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+              <defs>
+                <linearGradient id="jkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#1E40AF;stop-opacity:1" />
+                  <stop offset="50%" style="stop-color:#059669;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#FF8C42;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              
+              <!-- Background Circle -->
+              <circle cx="50" cy="50" r="45" fill="url(#jkGradient)" opacity="0.1"/>
+              <circle cx="50" cy="50" r="40" fill="none" stroke="url(#jkGradient)" stroke-width="2"/>
+              
+              <!-- J&K Text -->
+              <text x="50" y="35" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="bold" fill="url(#jkGradient)">J&K</text>
+              
+              <!-- AI Career Compass Text -->
+              <text x="50" y="50" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="500" fill="#4B5563">CAREER</text>
+              <text x="50" y="62" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" font-weight="500" fill="#4B5563">NAVIGATOR</text>
+              
+              <!-- Education Symbol -->
+              <path d="M25 70 L50 60 L75 70 L50 75 Z" fill="url(#jkGradient)" opacity="0.8"/>
+              <circle cx="50" cy="65" r="2" fill="#1E40AF"/>
+            </svg>`;
+
+            // Create 192x192 icon
+            createIcon(svgData, 192, 'canvas192', 'download192');
+            
+            // Create 512x512 icon
+            createIcon(svgData, 512, 'canvas512', 'download512');
+        }
+
+        function createIcon(svgData, size, canvasId, downloadId) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas with white background
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, size, size);
+            
+            const img = new Image();
+            const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(svgBlob);
+            
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, size, size);
+                
+                // Create download link
+                canvas.toBlob(function(blob) {
+                    const downloadLink = document.getElementById(downloadId);
+                    downloadLink.href = URL.createObjectURL(blob);
+                    downloadLink.download = `icon-${size}.png`;
+                    downloadLink.textContent = `Download ${size}x${size}`;
+                    downloadLink.style.display = 'block';
+                });
+                
+                URL.revokeObjectURL(url);
+            };
+            
+            img.src = url;
+        }
+    </script>
+</body>
+</html>

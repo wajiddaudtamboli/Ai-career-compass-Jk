@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J&K Career Navigator API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .endpoint { background: white; margin: 10px 0; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .endpoint h3 { margin: 0 0 10px 0; color: #333; }
+        .url { color: #666; font-family: monospace; }
+        .result { background: #f8f9fa; padding: 10px; border-radius: 4px; margin-top: 10px; }
+        .success { border-left: 4px solid #28a745; }
+        .error { border-left: 4px solid #dc3545; }
+        .loading { border-left: 4px solid #007bff; }
+        button { background: #007bff; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        pre { white-space: pre-wrap; word-wrap: break-word; max-height: 300px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 J&K Career Navigator API Test Suite</h1>
+        <p>Testing the enhanced dynamic system with multiple API endpoints.</p>
+        
+        <div class="endpoint">
+            <h3>Root Endpoint</h3>
+            <div class="url">GET http://localhost:5002/</div>
+            <button onclick="testEndpoint('/', 'root')">Test</button>
+            <div id="root-result" class="result loading" style="display: none;"></div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Health Check</h3>
+            <div class="url">GET http://localhost:5002/health</div>
+            <button onclick="testEndpoint('/health', 'health')">Test</button>
+            <div id="health-result" class="result loading" style="display: none;"></div>
+        </div>
+
+        <div class="endpoint">
+            <h3>API V1 Health</h3>
+            <div class="url">GET http://localhost:5002/api/v1/health</div>
+            <button onclick="testEndpoint('/api/v1/health', 'v1-health')">Test</button>
+            <div id="v1-health-result" class="result loading" style="display: none;"></div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Gemini API Health</h3>
+            <div class="url">GET http://localhost:5002/api/gemini/health</div>
+            <button onclick="testEndpoint('/api/gemini/health', 'gemini-health')">Test</button>
+            <div id="gemini-health-result" class="result loading" style="display: none;"></div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Content Blocks (Home Page)</h3>
+            <div class="url">GET http://localhost:5002/api/v1/content-blocks/home</div>
+            <button onclick="testEndpoint('/api/v1/content-blocks/home', 'content-blocks')">Test</button>
+            <div id="content-blocks-result" class="result loading" style="display: none;"></div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Gemini Cryptocurrency Symbols</h3>
+            <div class="url">GET http://localhost:5002/api/gemini/symbols</div>
+            <button onclick="testEndpoint('/api/gemini/symbols', 'symbols')">Test</button>
+            <div id="symbols-result" class="result loading" style="display: none;"></div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Careers List</h3>
+            <div class="url">GET http://localhost:5002/api/v1/careers</div>
+            <button onclick="testEndpoint('/api/v1/careers', 'careers')">Test</button>
+            <div id="careers-result" class="result loading" style="display: none;"></div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Colleges List</h3>
+            <div class="url">GET http://localhost:5002/api/v1/colleges</div>
+            <button onclick="testEndpoint('/api/v1/colleges', 'colleges')">Test</button>
+            <div id="colleges-result" class="result loading" style="display: none;"></div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Testimonials</h3>
+            <div class="url">GET http://localhost:5002/api/v1/testimonials</div>
+            <button onclick="testEndpoint('/api/v1/testimonials', 'testimonials')">Test</button>
+            <div id="testimonials-result" class="result loading" style="display: none;"></div>
+        </div>
+
+        <div class="endpoint">
+            <h3>Dashboard Stats</h3>
+            <div class="url">GET http://localhost:5002/api/v1/dashboard/stats</div>
+            <button onclick="testEndpoint('/api/v1/dashboard/stats', 'dashboard-stats')">Test</button>
+            <div id="dashboard-stats-result" class="result loading" style="display: none;"></div>
+        </div>
+
+        <button onclick="testAllEndpoints()" style="margin: 20px 0; padding: 12px 24px; font-size: 16px;">🧪 Test All Endpoints</button>
+    </div>
+
+    <script>
+        const BASE_URL = 'http://localhost:5002';
+
+        async function testEndpoint(path, id) {
+            const resultDiv = document.getElementById(id + '-result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result loading';
+            resultDiv.innerHTML = '⏳ Testing...';
+
+            try {
+                const response = await fetch(BASE_URL + path);
+                const data = await response.json();
+                
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `
+                    <strong>✅ Success (${response.status})</strong>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <strong>❌ Error</strong>
+                    <pre>${error.message}</pre>
+                `;
+            }
+        }
+
+        async function testAllEndpoints() {
+            const endpoints = [
+                ['/', 'root'],
+                ['/health', 'health'],
+                ['/api/v1/health', 'v1-health'],
+                ['/api/gemini/health', 'gemini-health'],
+                ['/api/v1/content-blocks/home', 'content-blocks'],
+                ['/api/gemini/symbols', 'symbols'],
+                ['/api/v1/careers', 'careers'],
+                ['/api/v1/colleges', 'colleges'],
+                ['/api/v1/testimonials', 'testimonials'],
+                ['/api/v1/dashboard/stats', 'dashboard-stats']
+            ];
+
+            for (const [path, id] of endpoints) {
+                await testEndpoint(path, id);
+                await new Promise(resolve => setTimeout(resolve, 500)); // Small delay
+            }
+        }
+
+        // Auto-test on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => testAllEndpoints(), 1000);
+        });
+    </script>
+</body>
+</html>

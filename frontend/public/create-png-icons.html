@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create PNG Icons</title>
+</head>
+<body>
+    <h2>Creating PNG Icons for J&K Career Navigator</h2>
+    <canvas id="canvas192" width="192" height="192"></canvas>
+    <canvas id="canvas512" width="512" height="512"></canvas>
+    
+    <div>
+        <a id="download192" download="icon-192.png">Download 192x192 PNG</a><br>
+        <a id="download512" download="icon-512.png">Download 512x512 PNG</a>
+    </div>
+
+    <script>
+        function createIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            
+            // Set white background
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, size, size);
+            
+            // Create gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#1E40AF');
+            gradient.addColorStop(0.5, '#059669'); 
+            gradient.addColorStop(1, '#FF8C42');
+            
+            // Draw main circle
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = size * 0.02;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size * 0.4, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Draw filled circle with low opacity
+            ctx.fillStyle = gradient;
+            ctx.globalAlpha = 0.1;
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size * 0.35, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.globalAlpha = 1;
+            
+            // Draw J&K text
+            ctx.fillStyle = '#1E40AF';
+            ctx.font = `bold ${size * 0.15}px Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('J&K', size/2, size * 0.35);
+            
+            // Draw CAREER text
+            ctx.fillStyle = '#4B5563';
+            ctx.font = `${size * 0.08}px Arial, sans-serif`;
+            ctx.fillText('CAREER', size/2, size * 0.5);
+            
+            // Draw NAVIGATOR text  
+            ctx.fillText('NAVIGATOR', size/2, size * 0.62);
+            
+            // Draw compass symbol
+            ctx.fillStyle = '#059669';
+            ctx.font = `${size * 0.12}px Arial, sans-serif`;
+            ctx.fillText('⚡', size/2, size * 0.75);
+        }
+        
+        // Create both icons
+        const canvas192 = document.getElementById('canvas192');
+        const canvas512 = document.getElementById('canvas512');
+        
+        createIcon(canvas192, 192);
+        createIcon(canvas512, 512);
+        
+        // Set download links
+        document.getElementById('download192').href = canvas192.toDataURL('image/png');
+        document.getElementById('download512').href = canvas512.toDataURL('image/png');
+        
+        // Auto-create files by converting to blob
+        canvas192.toBlob(function(blob) {
+            console.log('192x192 icon created');
+        }, 'image/png');
+        
+        canvas512.toBlob(function(blob) {
+            console.log('512x512 icon created');
+        }, 'image/png');
+    </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "logout": "Logout",
+    "search": "Search",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "navigation": {
+    "home": "Home",
+    "colleges": "Colleges",
+    "careers": "Careers",
+    "quiz": "Aptitude Test",
+    "dashboard": "Dashboard",
+    "profile": "Profile"
+  },
+  "homepage": {
+    "title": "AI Career Compass J&K",
+    "subtitle": "Your Gateway to Educational Excellence and Career Success",
+    "description": "Discover your ideal career path and find the perfect college in Jammu & Kashmir with our comprehensive guidance platform.",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "heroTitle": "Shape Your Future in Jammu & Kashmir",
+    "heroDescription": "Comprehensive career guidance and college information to help students make informed decisions about their educational journey."
+  },
+  "features": {
+    "assessment": {
+      "title": "Personalized Assessment",
+      "description": "Comprehensive aptitude test to discover your strengths and interests"
+    },
+    "colleges": {
+      "title": "College Directory",
+      "description": "Explore 500+ colleges across J&K with detailed information"
+    },
+    "careers": {
+      "title": "Career Pathways",
+      "description": "Discover diverse career opportunities in emerging sectors"
+    },
+    "guidance": {
+      "title": "Expert Guidance",
+      "description": "Get personalized advice from education and career experts"
+    }
+  },
+  "stats": {
+    "students": "Students Guided",
+    "colleges": "Partner Colleges",
+    "careers": "Career Options",
+    "success": "Success Rate"
+  },
+  "footer": {
+    "description": "Empowering students in Jammu & Kashmir to make informed career decisions.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact Info",
+    "address": "N.K. Orchid College of Engineering and Technology, Solapur",
+    "phone": "Phone",
+    "email": "Email",
+    "copyright": "© 2024 AI Career Compass J&K. All rights reserved.",
+    "socialMedia": "Follow Us"
+  },
+  "college": {
+    "searchPlaceholder": "Search colleges...",
+    "location": "Location",
+    "type": "Type",
+    "courses": "Courses",
+    "fees": "Fees",
+    "rating": "Rating",
+    "viewDetails": "View Details",
+    "applyNow": "Apply Now"
+  },
+  "career": {
+    "searchPlaceholder": "Search careers...",
+    "salaryRange": "Salary Range",
+    "experience": "Experience Required",
+    "skills": "Skills Required",
+    "growth": "Growth Prospects",
+    "exploreCareer": "Explore Career"
+  },
+  "quiz": {
+    "title": "Career Aptitude Test",
+    "description": "Discover your ideal career path with our comprehensive assessment",
+    "startTest": "Start Test",
+    "question": "Question",
+    "of": "of",
+    "nextQuestion": "Next Question",
+    "previousQuestion": "Previous Question",
+    "submitTest": "Submit Test",
+    "results": "Your Results",
+    "recommendedCareers": "Recommended Careers",
+    "retakeTest": "Retake Test"
+  },
+  "languageSwitcher": {
+    "selectLanguage": "Select Language",
+    "english": "English",
+    "hindi": "Hindi",
+    "kashmiri": "Kashmiri"
+  }
+}

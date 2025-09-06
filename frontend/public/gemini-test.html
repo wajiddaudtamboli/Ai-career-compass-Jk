@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini AI Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .container { background: #f5f5f5; padding: 20px; border-radius: 10px; }
+        .message { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .user { background: #e3f2fd; text-align: right; }
+        .ai { background: #f1f8e9; }
+        textarea { width: 100%; height: 100px; margin: 10px 0; }
+        button { padding: 10px 20px; background: #2196f3; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #1976d2; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .loading { background: #fff3e0; color: #f57c00; }
+        .error { background: #ffebee; color: #c62828; }
+        .success { background: #e8f5e8; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 AI Career Compass J&K - AI Chat Test</h1>
+        
+        <div id="status" class="status">Ready to test AI chat</div>
+        
+        <div id="chatHistory"></div>
+        
+        <textarea id="messageInput" placeholder="Ask me about careers, colleges, or opportunities in Jammu & Kashmir..."></textarea>
+        <br>
+        <button onclick="sendMessage()">Send Message</button>
+        <button onclick="clearChat()">Clear Chat</button>
+        
+        <h3>Sample Questions:</h3>
+        <ul>
+            <li><a href="#" onclick="setMessage('What are the best career opportunities in J&K?')">Career opportunities in J&K</a></li>
+            <li><a href="#" onclick="setMessage('Tell me about engineering colleges in Jammu and Kashmir')">Engineering colleges</a></li>
+            <li><a href="#" onclick="setMessage('What skills should I develop for the IT sector in J&K?')">IT skills development</a></li>
+            <li><a href="#" onclick="setMessage('Government job opportunities in Kashmir')">Government jobs</a></li>
+        </ul>
+    </div>
+
+    <script>
+        const apiUrl = 'http://localhost:5005';
+        
+        function setMessage(text) {
+            document.getElementById('messageInput').value = text;
+        }
+        
+        function addMessage(message, isUser) {
+            const chatHistory = document.getElementById('chatHistory');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
+            messageDiv.innerHTML = `<strong>${isUser ? 'You' : 'AI Assistant'}:</strong> ${message}`;
+            chatHistory.appendChild(messageDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+        
+        function setStatus(message, type = 'loading') {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+        }
+        
+        async function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+            
+            if (!message) {
+                setStatus('Please enter a message', 'error');
+                return;
+            }
+            
+            addMessage(message, true);
+            messageInput.value = '';
+            setStatus('AI is thinking...', 'loading');
+            
+            try {
+                const response = await fetch(`${apiUrl}/api/chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        context: 'career guidance'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    addMessage(data.response, false);
+                    setStatus(`Response from ${data.source || 'AI'} - ${new Date().toLocaleTimeString()}`, 'success');
+                } else {
+                    addMessage(`Error: ${data.error || 'Unknown error'}`, false);
+                    setStatus('Error occurred', 'error');
+                }
+            } catch (error) {
+                addMessage(`Connection Error: ${error.message}`, false);
+                setStatus('Failed to connect to AI service', 'error');
+            }
+        }
+        
+        function clearChat() {
+            document.getElementById('chatHistory').innerHTML = '';
+            setStatus('Chat cleared', 'success');
+        }
+        
+        // Allow Enter key to send message
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+        
+        // Test API connection on page load
+        window.onload = async function() {
+            try {
+                const response = await fetch(`${apiUrl}/api/health`);
+                const data = await response.json();
+                setStatus(`✅ Connected to backend - ${data.status}`, 'success');
+            } catch (error) {
+                setStatus(`❌ Cannot connect to backend: ${error.message}`, 'error');
+            }
+        };
+    </script>
+</body>
+</html>

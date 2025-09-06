@@ -1,0 +1,26 @@
+{
+  "name": "ai-career-compass-jk-backend",
+  "version": "1.0.0",
+  "description": "Backend API for AI Career Compass J&K",
+  "main": "server-simple.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server-simple.js",
+    "dev": "npx nodemon server-simple.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "compression": "^1.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["career", "navigation", "jammu", "kashmir"],
+  "author": "Wajid Daud Tamboli",
+  "license": "MIT"
+}
