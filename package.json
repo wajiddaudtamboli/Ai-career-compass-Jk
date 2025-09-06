@@ -1,26 +1,36 @@
 {
   "name": "jk-career-navigator",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "AI-powered career guidance platform for Jammu & Kashmir students",
   "main": "backend/server-enhanced.js",
+  "type": "module",
   "scripts": {
-    "build": "cd frontend && npm install && npm run build",
-    "start": "cd backend && npm ci && node server-enhanced.js",
-    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\"",
-    "install-all": "cd backend && npm install && cd ../frontend && npm install",
-    "deploy": "vercel --prod",
-    "vercel-build": "cd frontend && npm ci && npm run build"
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && npm start",
+    "deploy": "npm run build && vercel --prod",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "test": "echo \"Tests coming soon...\" && exit 0"
   },
   "keywords": [
     "career-guidance",
     "jammu-kashmir",
-    "ai",
     "education",
+    "ai",
     "react",
-    "nodejs"
+    "nodejs",
+    "vite",
+    "tailwindcss"
   ],
   "author": "Wajid Daud Tamboli",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wajiddaudtamboli/AI-Career-Compass-J-K.git"
+  },
+  "homepage": "https://github.com/wajiddaudtamboli/AI-Career-Compass-J-K#readme",
   "devDependencies": {
     "concurrently": "^8.2.0"
   }
