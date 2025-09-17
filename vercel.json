@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "jk-career-navigator",
   "builds": [
     {
       "src": "frontend/package.json",
@@ -8,23 +7,10 @@
       "config": {
         "distDir": "dist"
       }
-    },
-    {
-      "src": "backend/server-enhanced.js",
-      "use": "@vercel/node"
     }
   ],
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/backend/server-enhanced.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/frontend/dist/$1"
-    }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
 }

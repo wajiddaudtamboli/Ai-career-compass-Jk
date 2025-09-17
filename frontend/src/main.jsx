@@ -7,8 +7,8 @@ import ClerkProviderWrapper from './components/ClerkProviderWrapper'
 import App from './App.jsx'
 import './index.css'
 
-// Register service worker for PWA
-if ('serviceWorker' in navigator) {
+// Register service worker for PWA (opt-in via env flag)
+if (import.meta.env.VITE_ENABLE_PWA === 'true' && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
       .then((registration) => {
