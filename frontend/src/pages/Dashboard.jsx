@@ -14,17 +14,17 @@ const Dashboard = () => {
   // Mock user data
   const mockUserData = {
     profile: {
-      name: 'Arjun Kumar',
-      email: 'arjun.kumar@email.com',
+      name: 'Wajid Daud Tamboli',
+      email: 'wajiddaudtamboli123@email.com',
       class: '12th',
       stream: 'Science',
       district: 'Srinagar',
       school: 'Government Higher Secondary School Srinagar',
-      profileCompletion: 85
+      profileCompletion: 80
     },
     quizResults: {
       completed: true,
-      date: '2024-01-15',
+      date: '2025-09-05',
       recommendations: [
         { field: 'Engineering', percentage: 85, rank: 1 },
         { field: 'Medicine', percentage: 72, rank: 2 },
