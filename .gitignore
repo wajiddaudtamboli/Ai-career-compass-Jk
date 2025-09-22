@@ -14,12 +14,15 @@ yarn-error.log*
 dist/
 build/
 .vercel/
+.railway/
 
 # Development
 .vscode/
 .idea/
 *.log
 *.tmp
+reports/*.json
+!reports/.gitkeep
 
 # Frontend specific
 frontend/dist/

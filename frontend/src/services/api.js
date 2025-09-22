@@ -1,7 +1,8 @@
 // API service for making HTTP requests to backend
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5001';
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || 
+  (import.meta.env.PROD ? '' : 'http://localhost:5002');
 
 // Create axios instance with default configuration
 const api = axios.create({
@@ -34,7 +35,7 @@ api.interceptors.response.use(
     // Handle network errors vs CORS vs other errors
     if (error.code === 'ERR_NETWORK' || error.message === 'Network Error') {
       console.error('Network Error: Backend server might be down or unreachable');
-      error.userMessage = 'Backend server is unreachable. Please check if the server is running on http://localhost:5001';
+      error.userMessage = 'Backend server is unreachable. Please check if the server is running on http://localhost:5002';
     } else if (error.response?.status === 0) {
       console.error('CORS Error: Cross-origin request blocked');
       error.userMessage = 'CORS Error: Request blocked due to cross-origin restrictions';

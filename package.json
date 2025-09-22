@@ -4,12 +4,18 @@
   "description": "AI-powered career guidance platform for Jammu & Kashmir students",
   "main": "backend/server-enhanced.js",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && npm run dev",
     "build": "cd frontend && npm run build",
     "start": "cd backend && npm start",
+    "railway:build": "npm install && cd frontend && npm install && npm run build && cd ../backend && npm install",
+    "railway:start": "cd backend && npm start",
     "deploy": "npm run build && vercel --prod",
     "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
     "test": "echo \"Tests coming soon...\" && exit 0"

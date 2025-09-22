@@ -8,7 +8,13 @@ import morgan from 'morgan';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+
+// Get the directory name for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Import database connection
 import { 
@@ -65,8 +71,12 @@ const corsOptions = {
         process.env.FRONTEND_URL || 'http://localhost:3000',
         'http://localhost:3006',
         'http://localhost:5173', // Vite dev server
-        'http://127.0.0.1:5173'
-    ],
+        'http://127.0.0.1:5173',
+        // Railway domains
+        /^https:\/\/.*\.railway\.app$/,
+        // Additional production domains
+        process.env.PRODUCTION_DOMAIN
+    ].filter(Boolean),
     credentials: true,
     optionsSuccessStatus: 200,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -95,6 +105,18 @@ app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(limiter);
+
+// =============================================================================
+// STATIC FILE SERVING (for production)
+// =============================================================================
+
+if (process.env.NODE_ENV === 'production') {
+    // Serve static files from the frontend build directory
+    const frontendDistPath = path.join(__dirname, '..', 'frontend', 'dist');
+    app.use(express.static(frontendDistPath));
+    
+    console.log('📁 Serving static files from:', frontendDistPath);
+}
 
 // =============================================================================
 // DATABASE INITIALIZATION
@@ -188,6 +210,14 @@ function setupRoutes(dbConnected) {
     app.use('/api/gemini', geminiRoutes);         // Gemini cryptocurrency API routes
     app.use('/api', dataRoutes);                  // Legacy routes for backward compatibility
     app.use('/api', aiRoutes);                    // AI chat routes
+    
+    // Catch-all handler for React app (only in production)
+    if (process.env.NODE_ENV === 'production') {
+        app.get('*', (req, res) => {
+            const frontendDistPath = path.join(__dirname, '..', 'frontend', 'dist');
+            res.sendFile(path.join(frontendDistPath, 'index.html'));
+        });
+    }
     
     authRoutesConfigured = true;
     console.log(`🔧 Routes configured with ${dbConnected ? 'Database' : 'Mock'} authentication`);
