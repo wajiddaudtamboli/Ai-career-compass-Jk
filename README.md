@@ -79,8 +79,8 @@ Fallback: Mock data system for offline functionality
 Build Tool: Vite with hot module replacement
 Package Manager: npm with workspaces
 Version Control: Git with conventional commits
-Deployment: Ready for Vercel/Netlify
-Database: PostgreSQL (Neon/Supabase compatible)
+Deployment: Railway (Full-stack) / Vercel (Frontend) / Netlify (Frontend)
+Database: PostgreSQL (Railway/Neon/Supabase compatible)
 ```
 
 ## 🚀 Quick Start Guide
@@ -301,6 +301,17 @@ GET  /api/insights/industry   - Industry-specific insights
 
 ## 📱 Deployment Options
 
+### **Railway Deployment (Recommended - Full Stack)**
+```bash
+# One-click deployment with Railway
+# 1. Connect GitHub repository to Railway
+# 2. Add PostgreSQL database service
+# 3. Configure environment variables
+# 4. Deploy automatically on git push
+
+# See RAILWAY_DEPLOYMENT.md for detailed guide
+```
+
 ### **Vercel Deployment (Frontend)**
 ```bash
 # Install Vercel CLI
@@ -327,7 +338,10 @@ railway up
 
 ### **Database Deployment**
 ```bash
-# Neon (Recommended)
+# Railway PostgreSQL (Recommended)
+# Automatically provisioned with Railway deployment
+
+# Neon (Alternative)
 # Create database at https://neon.tech
 # Copy connection string to DATABASE_URL
 
