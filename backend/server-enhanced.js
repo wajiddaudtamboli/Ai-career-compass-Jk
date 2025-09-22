@@ -38,6 +38,9 @@ dotenv.config();
 
 // Initialize Express app
 const app = express();
+
+// Trust proxy for Railway deployment (fixes rate limiting errors)
+app.set('trust proxy', true);
 const PORT = process.env.PORT || 5002;
 
 // Initialize Google Gemini AI
@@ -63,6 +66,12 @@ const limiter = rateLimit({
     },
     standardHeaders: true,
     legacyHeaders: false,
+    // Trust proxy settings for Railway deployment
+    trustProxy: true,
+    skip: (req) => {
+        // Skip rate limiting for health checks
+        return req.path === '/health' || req.path === '/api/health';
+    }
 });
 
 // CORS configuration
@@ -173,19 +182,27 @@ app.get('/health', async (req, res) => {
             uptime: process.uptime(),
             memory: process.memoryUsage(),
             version: '3.0.0',
+            environment: process.env.NODE_ENV || 'development',
+            port: process.env.PORT || 5002,
             features: {
                 database: dbHealth.status === 'connected' ? 'connected' : 'mock',
                 authentication: 'JWT enabled',
                 gemini_api: genAI ? 'available' : 'disabled',
                 ai_chat: 'enabled',
                 enhanced_routes: 'enabled',
-                analytics: 'enabled'
+                analytics: 'enabled',
+                static_files: process.env.NODE_ENV === 'production' ? 'enabled' : 'disabled'
             },
             api_versions: {
                 'v1': '/api/v1 (Enhanced dynamic system)',
                 'auth': '/auth (JWT authentication)',
                 'gemini': '/api/gemini (Cryptocurrency data)',
                 'legacy': '/api (Backward compatibility)'
+            },
+            deployment: {
+                platform: 'Railway',
+                trust_proxy: 'enabled',
+                rate_limiting: 'configured'
             }
         });
     } catch (error) {

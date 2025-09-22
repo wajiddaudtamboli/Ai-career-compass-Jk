@@ -311,8 +311,14 @@ Railway provides the most seamless full-stack deployment experience for this pro
 # 1. Fork/Clone repository: https://github.com/wajiddaudtamboli/Ai-career-compass-Jk.git
 # 2. Connect GitHub repository to Railway (railway.app)
 # 3. Add PostgreSQL database service in Railway dashboard
-# 4. Configure environment variables (see .env.example)
+# 4. Configure environment variables (CRITICAL - see RAILWAY_ENV_SETUP.md)
 # 5. Deploy automatically - Railway handles build and deployment
+
+# IMPORTANT: Set these environment variables in Railway:
+# NODE_ENV=production
+# PORT=8080
+# GEMINI_API_KEY=your_gemini_api_key
+# JWT_SECRET=your_secure_jwt_secret
 
 # Railway Features:
 # ✅ Automatic builds on git push
@@ -323,6 +329,7 @@ Railway provides the most seamless full-stack deployment experience for this pro
 # ✅ Integrated monitoring and logs
 
 # See RAILWAY_DEPLOYMENT.md for detailed step-by-step guide
+# See RAILWAY_ENV_SETUP.md for environment variables setup
 ```
 
 ### **Alternative Deployment Options**
