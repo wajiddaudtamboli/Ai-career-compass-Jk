@@ -1,11 +1,12 @@
 # 🚀 Railway Deployment Guide for J&K Career Navigator
+**Team AIspire Navigators**
 
-This guide will help you deploy the J&K Career Navigator application to Railway.
+This guide will help you deploy the J&K Career Navigator application to Railway platform.
 
 ## 🛠️ Prerequisites
 
 1. **Railway Account**: Sign up at [railway.app](https://railway.app)
-2. **GitHub Repository**: Your code should be in a GitHub repository
+2. **GitHub Repository**: https://github.com/wajiddaudtamboli/Ai-career-compass-Jk.git
 3. **Environment Variables**: Prepare your environment variables
 
 ## 📋 Environment Variables Setup
@@ -36,7 +37,8 @@ BCRYPT_ROUNDS=12
 1. Go to [Railway Dashboard](https://railway.app/dashboard)
 2. Click "New Project"
 3. Select "Deploy from GitHub repo"
-4. Choose your `jk-career-navigator` repository
+4. Choose the `Ai-career-compass-Jk` repository from wajiddaudtamboli
+5. Select the `main` branch for deployment
 
 ### Step 2: Add PostgreSQL Database
 1. In your project dashboard, click "Add Service"

@@ -1,4 +1,5 @@
 # 🧭 AI Career Compass J&K - Intelligent Career Guidance Platform
+**Team AIspire Navigators**
 
 A comprehensive full-stack AI-powered career guidance platform specifically designed for students in Jammu & Kashmir, featuring Google Gemini AI integration, real-time career insights, and personalized learning pathways.
 
@@ -79,8 +80,9 @@ Fallback: Mock data system for offline functionality
 Build Tool: Vite with hot module replacement
 Package Manager: npm with workspaces
 Version Control: Git with conventional commits
-Deployment: Railway (Full-stack) / Vercel (Frontend) / Netlify (Frontend)
-Database: PostgreSQL (Railway/Neon/Supabase compatible)
+Primary Deployment: Railway (Full-stack hosting platform)
+Alternative Deployment: Vercel (Frontend) / Netlify (Frontend)
+Database: PostgreSQL (Railway managed database)
 ```
 
 ## 🚀 Quick Start Guide
@@ -95,8 +97,8 @@ Database: PostgreSQL (Railway/Neon/Supabase compatible)
 
 1. **Clone Repository**
    ```bash
-   git clone https://github.com/your-username/jk-career-navigator.git
-   cd jk-career-navigator
+   git clone https://github.com/wajiddaudtamboli/Ai-career-compass-Jk.git
+   cd Ai-career-compass-Jk
    ```
 
 2. **Automated Setup (Recommended)**
@@ -301,18 +303,31 @@ GET  /api/insights/industry   - Industry-specific insights
 
 ## 📱 Deployment Options
 
-### **Railway Deployment (Recommended - Full Stack)**
-```bash
-# One-click deployment with Railway
-# 1. Connect GitHub repository to Railway
-# 2. Add PostgreSQL database service
-# 3. Configure environment variables
-# 4. Deploy automatically on git push
+### **🚀 Railway Deployment (Primary & Recommended)**
+Railway provides the most seamless full-stack deployment experience for this project.
 
-# See RAILWAY_DEPLOYMENT.md for detailed guide
+```bash
+# Quick Railway Deployment
+# 1. Fork/Clone repository: https://github.com/wajiddaudtamboli/Ai-career-compass-Jk.git
+# 2. Connect GitHub repository to Railway (railway.app)
+# 3. Add PostgreSQL database service in Railway dashboard
+# 4. Configure environment variables (see .env.example)
+# 5. Deploy automatically - Railway handles build and deployment
+
+# Railway Features:
+# ✅ Automatic builds on git push
+# ✅ Managed PostgreSQL database
+# ✅ Environment variable management
+# ✅ Custom domain support
+# ✅ Zero-downtime deployments
+# ✅ Integrated monitoring and logs
+
+# See RAILWAY_DEPLOYMENT.md for detailed step-by-step guide
 ```
 
-### **Vercel Deployment (Frontend)**
+### **Alternative Deployment Options**
+
+#### **Vercel Deployment (Frontend Only)**
 ```bash
 # Install Vercel CLI
 npm i -g vercel
@@ -324,30 +339,39 @@ vercel --prod
 # Configure environment variables in Vercel dashboard
 ```
 
-### **Railway/Render Deployment (Backend)**
+#### **Other Backend Hosting (Alternative to Railway)**
 ```bash
-# For Railway
-railway login
-railway init
-railway up
-
 # For Render
 # Connect GitHub repo to Render dashboard
 # Configure build and start commands
+
+# For Heroku (Legacy)
+# heroku create your-app-name
+# git push heroku main
 ```
 
-### **Database Deployment**
-```bash
-# Railway PostgreSQL (Recommended)
-# Automatically provisioned with Railway deployment
+### **Database Hosting Options**
 
-# Neon (Alternative)
+#### **Railway PostgreSQL (Recommended)**
+```bash
+# Automatically provisioned with Railway deployment
+# Managed backups and scaling
+# Built-in connection pooling
+# No additional configuration required
+```
+
+#### **Alternative Database Providers**
+```bash
+# Neon (Serverless PostgreSQL)
 # Create database at https://neon.tech
 # Copy connection string to DATABASE_URL
 
-# Supabase Alternative
+# Supabase (Open source Firebase alternative)
 # Create project at https://supabase.com
 # Use provided PostgreSQL connection string
+
+# AWS RDS / Google Cloud SQL (Enterprise)
+# For high-traffic production deployments
 ```
 
 ## 🔮 Roadmap & Future Enhancements
@@ -390,6 +414,33 @@ railway up
 - User data export/deletion
 - Transparent privacy policy
 
+## 👥 Meet Our Team - AIspire Navigators
+
+### **Team Members**
+
+| Avatar | Name | Role | Specialization |
+|--------|------|------|----------------|
+| 👨‍💼 | **Wajid Tamboli** | Team Leader | Full-Stack Development & AI Integration |
+| 👩‍💻 | **Pooja Mallelor** | Team Member | Frontend Development & UI/UX Design |
+| 👩‍🎨 | **Sneha Khairate** | Team Member | UI/UX Design & User Experience |
+| 👩‍🔬 | **Vijayalaxmi Kamble** | Team Member | Data Analysis & Research |
+| 👩‍💼 | **Sanjana Waghmare** | Team Member | Project Management & Testing |
+| 👩‍🎓 | **Priyanka Dhule** | Team Member | Content Strategy & Documentation |
+| 👨‍🏫 | **Prof. V. D. Gaikwad** | Mentor | Technical Guidance & Project Supervision |
+
+### **Team Contributions**
+
+- **Wajid Tamboli (Team Leader)**: Architecture design, backend development, AI integration, deployment setup
+- **Pooja Mallelor**: React components, responsive design, frontend optimization
+- **Sneha Khairate**: UI/UX design, user interface components, design system
+- **Vijayalaxmi Kamble**: Career data analysis, database design, research methodologies
+- **Sanjana Waghmare**: Quality assurance, project coordination, testing strategies
+- **Priyanka Dhule**: Content creation, documentation, user guides
+- **Prof. V. D. Gaikwad**: Technical mentorship, project guidance, academic supervision
+
+### **Team Philosophy**
+> *"Empowering students through collaborative innovation and AI-driven career guidance solutions."*
+
 ## 🤝 Contributing
 
 ### **Development Setup**
@@ -414,20 +465,40 @@ npm run test
 
 ## 👥 Team & Authors
 
-### **Lead Developer**
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/wajiddaudtamboli)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/wajiddaudtamboli)
+### **Team AIspire Navigators**
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/wajiddaudtamboli/Ai-career-compass-Jk)
+[![Railway](https://img.shields.io/badge/Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white)](https://railway.app)
 
-**Wajid Daud Tamboli**
+### **👨‍💼 Team Leader**
+**Wajid Tamboli**
 - Full-Stack Developer & AI Integration Specialist
 - Project Architect & Technical Lead
-- Student at N.K. Orchid College of Engineering and Technology
+- GitHub: [@wajiddaudtamboli](https://github.com/wajiddaudtamboli)
+- LinkedIn: [Wajid Daud Tamboli](https://linkedin.com/in/wajiddaudtamboli)
 
-### **Contact Information**
-- **📧 Email**: [wajiddaudtamboli123@gmail.com](mailto:wajiddaudtamboli123@gmail.com)
-- **📞 Phone**: [+91 9667033839](tel:+919667033839)
+### **👩‍💻 Development Team**
+| Team Member | Role | Specialization |
+|-------------|------|----------------|
+| **Pooja Mallelor** | Frontend Developer | React.js, UI Components |
+| **Sneha Khairate** | UI/UX Designer | User Experience, Design Systems |
+| **Vijayalaxmi Kamble** | Data Analyst | Career Data, Research |
+| **Sanjana Waghmare** | QA Engineer | Testing, Project Management |
+| **Priyanka Dhule** | Content Strategist | Documentation, User Guides |
+
+### **👨‍🏫 Academic Supervision**
+**Prof. V. D. Gaikwad**
+- Project Mentor & Technical Supervisor
+- N.K. Orchid College of Engineering and Technology
+
+### **🏫 Institution**
+**N.K. Orchid College of Engineering and Technology, Solapur**
+
+### **📞 Contact Information**
+- **📧 Project Email**: [wajiddaudtamboli123@gmail.com](mailto:wajiddaudtamboli123@gmail.com)
+- **� Phone**: [+91 9667033839](tel:+919667033839)
 - **🏫 Institution**: N.K. Orchid College of Engineering and Technology, Solapur
-- **🌐 LinkedIn**: [Wajid Daud Tamboli](https://linkedin.com/in/wajiddaudtamboli)
+- **🌐 Repository**: [github.com/wajiddaudtamboli/Ai-career-compass-Jk](https://github.com/wajiddaudtamboli/Ai-career-compass-Jk)
+- **🚀 Live Demo**: Railway Deployment (Coming Soon)
 
 ## 💡 Project Philosophy
 
@@ -474,10 +545,13 @@ Special thanks to:
 
 **"Transforming Career Guidance Through AI Innovation"**
 
-*Developed by [Wajid Daud Tamboli](https://github.com/wajiddaudtamboli) at N.K. Orchid College of Engineering and Technology, Solapur*
+*Developed by **Team AIspire Navigators** at N.K. Orchid College of Engineering and Technology, Solapur*
 
-[![GitHub Stars](https://img.shields.io/github/stars/your-username/jk-career-navigator?style=social)](https://github.com/your-username/jk-career-navigator)
+**Team Leader**: [Wajid Daud Tamboli](https://github.com/wajiddaudtamboli) | **Mentor**: Prof. V. D. Gaikwad
+
+[![GitHub Stars](https://img.shields.io/github/stars/wajiddaudtamboli/Ai-career-compass-Jk?style=social)](https://github.com/wajiddaudtamboli/Ai-career-compass-Jk)
 [![Made with Love](https://img.shields.io/badge/Made%20with-❤️-red.svg)](https://github.com/wajiddaudtamboli)
 [![Powered by AI](https://img.shields.io/badge/Powered%20by-Google%20Gemini-blue.svg)](https://ai.google.dev/)
+[![Deployed on Railway](https://img.shields.io/badge/Deployed%20on-Railway-0B0D0E.svg)](https://railway.app)
 
 </div> 

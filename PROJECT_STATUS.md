@@ -1,6 +1,20 @@
 # 🎯 Project Status & Deployment Summary
 
-**J&K Career Navigator - AI-Powered Career Guidance Platform**
+**J&K Career Navigator - AI-Powered Career Guidance Platform**  
+**Team AIspire Navigators**
+
+## 👥 Team Information
+
+### **Team Members**
+| Avatar | Name | Role | Contribution |
+|--------|------|------|-------------|
+| 👨‍💼 | Wajid Tamboli | Team Leader | Full-Stack Development, AI Integration, Deployment |
+| 👩‍💻 | Pooja Mallelor | Frontend Developer | React Components, UI Development |
+| 👩‍🎨 | Sneha Khairate | UI/UX Designer | Design System, User Experience |
+| 👩‍🔬 | Vijayalaxmi Kamble | Data Analyst | Career Data Research, Database Design |
+| 👩‍💼 | Sanjana Waghmare | QA Engineer | Testing, Project Management |
+| 👩‍🎓 | Priyanka Dhule | Content Strategist | Documentation, Content Creation |
+| 👨‍🏫 | Prof. V. D. Gaikwad | Mentor | Technical Guidance, Project Supervision |
 
 ## ✅ Completed Tasks
 
