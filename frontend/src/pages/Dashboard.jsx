@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useMockUser as useUser, MockSignInButton as SignInButton } from '../components/ClerkProviderWrapper'
+import { useUser, SignInButton } from '@clerk/clerk-react'
 import { useLanguage } from '../context/LanguageContext'
 import DynamicProfile from '../components/DynamicProfile'
 import {
@@ -124,7 +124,7 @@ const Dashboard = () => {
           <p className="text-gray-600 dark:text-gray-400 mb-8">
             Sign in to access your personalized career guidance, progress tracking, and recommendations.
           </p>
-          <SignInButton mode="modal">
+          <SignInButton redirectUrl="/dashboard">
             <div className="btn-primary text-lg px-8 py-4 cursor-pointer">
               <LogIn className="w-5 h-5 mr-2" />
               Sign In to Continue
@@ -183,7 +183,7 @@ const Dashboard = () => {
         >
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gradient mb-2 text-responsive">
             <div className="flex items-center gap-2">
-              Welcome back, {userData.profile.name}!
+              Welcome back, {user?.firstName || user?.fullName || 'User'}!
               <User className="w-5 h-5 text-primary-500" />
             </div>
           </h1>

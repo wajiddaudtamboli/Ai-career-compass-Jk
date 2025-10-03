@@ -3,13 +3,13 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
 import { 
-  MockSignInButton as SignInButton, 
-  MockSignUpButton as SignUpButton, 
-  MockUserButton as UserButton, 
-  MockSignedIn as SignedIn, 
-  MockSignedOut as SignedOut,
-  useMockUser as useUser 
-} from './ClerkProviderWrapper'
+  SignInButton, 
+  SignUpButton, 
+  UserButton, 
+  SignedIn, 
+  SignedOut,
+  useUser 
+} from '@clerk/clerk-react'
 import { 
   GraduationCap, 
   Home, 
