@@ -4,6 +4,21 @@ import { Link } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
 import TestimonialSlider from '../components/TestimonialSlider'
 import AIFeaturesShowcase from '../components/AIFeaturesShowcase'
+import { 
+  Target, 
+  School, 
+  Briefcase, 
+  LayoutDashboard, 
+  GraduationCap, 
+  ClipboardList,
+  Star,
+  ArrowRight,
+  Lightbulb,
+  BarChart3,
+  Award,
+  Rocket,
+  MapPin
+} from 'lucide-react'
 
 const Home = () => {
   const { theme } = useTheme()
@@ -12,37 +27,37 @@ const Home = () => {
   // Mock data
   const features = [
     {
-      icon: '🎯',
+      icon: Target,
       title: 'Personalized Assessment',
       description: 'Comprehensive aptitude test to discover your strengths and interests',
       color: 'from-blue-500 to-blue-600'
     },
     {
-      icon: '🏛️',
+      icon: School,
       title: 'College Directory',
       description: 'Explore top colleges and universities in Jammu & Kashmir',
       color: 'from-green-500 to-green-600'
     },
     {
-      icon: '💼',
+      icon: Briefcase,
       title: 'Career Guidance',
       description: 'Expert advice on career paths suited for your profile',
       color: 'from-purple-500 to-purple-600'
     },
     {
-      icon: '💡',
+      icon: Lightbulb,
       title: 'Expert Guidance',
       description: 'Connect with career counselors and industry experts',
       color: 'from-orange-500 to-orange-600'
     },
     {
-      icon: '📊',
+      icon: BarChart3,
       title: 'Progress Tracking',
       description: 'Monitor your journey with detailed analytics and milestones',
       color: 'from-pink-500 to-pink-600'
     },
     {
-      icon: '🎓',
+      icon: Award,
       title: 'Scholarship Finder',
       description: 'Access hundreds of scholarship opportunities for J&K students',
       color: 'from-indigo-500 to-indigo-600'
@@ -50,10 +65,10 @@ const Home = () => {
   ]
 
   const successStories = [
-    { number: '10,000+', label: 'Students Helped', icon: '🎓' },
-    { number: '500+', label: 'College Partners', icon: '🏛️' },
-    { number: '200+', label: 'Career Paths', icon: '💼' },
-    { number: '95%', label: 'Success Rate', icon: '🎯' }
+    { number: '10,000+', label: 'Students Helped', icon: GraduationCap },
+    { number: '500+', label: 'College Partners', icon: School },
+    { number: '200+', label: 'Career Paths', icon: Briefcase },
+    { number: '95%', label: 'Success Rate', icon: Target }
   ]
 
   // Animate stats
@@ -137,11 +152,13 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <Link to="/quiz" className="btn-primary text-sm sm:text-base lg:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
-                Get Started 🚀
+              <Link to="/quiz" className="btn-primary text-sm sm:text-base lg:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto flex items-center justify-center gap-2">
+                Get Started
+                <Rocket className="w-4 h-4 sm:w-5 sm:h-5" />
               </Link>
-              <Link to="/colleges" className="btn-secondary text-sm sm:text-base lg:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
-                Explore Colleges 🏛️
+              <Link to="/colleges" className="btn-secondary text-sm sm:text-base lg:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto flex items-center justify-center gap-2">
+                Explore Colleges
+                <School className="w-4 h-4 sm:w-5 sm:h-5" />
               </Link>
             </motion.div>
 
@@ -159,7 +176,9 @@ const Home = () => {
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="text-xl sm:text-2xl md:text-3xl mb-1 sm:mb-2">{stat.icon}</div>
+                  <div className="mb-1 sm:mb-2 flex justify-center">
+                    <stat.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary-500" />
+                  </div>
                   <div className="text-lg sm:text-xl md:text-2xl font-bold text-stats-yellow mb-1" id="stats-section">
                     {index === 0 ? `${stats.students.toLocaleString()}+` :
                      index === 1 ? `${stats.colleges}+` :
@@ -203,8 +222,8 @@ const Home = () => {
                 whileHover={{ y: -10 }}
                 className="glass-strong p-4 sm:p-6 md:p-8 rounded-xl hover:shadow-xl transition-all duration-300 card-responsive"
               >
-                <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r ${feature.color} rounded-xl flex items-center justify-center text-2xl sm:text-3xl mb-4 sm:mb-6`}>
-                  {feature.icon}
+                <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r ${feature.color} rounded-xl flex items-center justify-center mb-4 sm:mb-6`}>
+                  <feature.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 heading-secondary text-responsive">{feature.title}</h3>
                 <p className="text-sm sm:text-base text-adaptive-secondary text-responsive">{feature.description}</p>
@@ -241,19 +260,19 @@ const Home = () => {
                 step: '01',
                 title: 'Take Assessment',
                 description: 'Complete our comprehensive aptitude and personality test',
-                icon: '📝'
+                icon: ClipboardList
               },
               {
                 step: '02',
                 title: 'Get Recommendations',
                 description: 'Receive personalized career and college suggestions',
-                icon: '🎯'
+                icon: Target
               },
               {
                 step: '03',
                 title: 'Plan Your Future',
                 description: 'Create your educational and career roadmap',
-                icon: '🗺️'
+                icon: MapPin
               }
             ].map((step, index) => (
               <motion.div
@@ -265,8 +284,8 @@ const Home = () => {
                 className="text-center card-responsive"
               >
                 <div className="relative mb-6 sm:mb-8">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center text-2xl sm:text-3xl md:text-4xl mx-auto mb-3 sm:mb-4">
-                    {step.icon}
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                    <step.icon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
                   </div>
                   <div className="absolute -top-1 sm:-top-2 -right-1 sm:-right-2 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-accent-500 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base md:text-lg">
                     {step.step}

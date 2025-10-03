@@ -10,6 +10,23 @@ import {
   MockSignedOut as SignedOut,
   useMockUser as useUser 
 } from './ClerkProviderWrapper'
+import { 
+  GraduationCap, 
+  Home, 
+  School, 
+  Briefcase, 
+  MessageCircle, 
+  ClipboardList, 
+  Award, 
+  LayoutDashboard,
+  LogIn,
+  UserPlus,
+  Sun,
+  Moon,
+  Mail,
+  Phone,
+  User
+} from 'lucide-react'
 
 const ResponsiveNavbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -19,13 +36,13 @@ const ResponsiveNavbar = () => {
   const location = useLocation()
 
   const navItems = [
-    { path: '/', label: 'Home', icon: '🏠' },
-    { path: '/colleges', label: 'Colleges', icon: '🏛️' },
-    { path: '/careers', label: 'Careers', icon: '💼' },
-    { path: '/counselling', label: 'Counselling', icon: '🎯' },
-    { path: '/quiz', label: 'Quiz', icon: '📝' },
-    { path: '/scholarships', label: 'Scholarships', icon: '💰' },
-    { path: '/dashboard', label: 'Dashboard', icon: '📊' }
+    { path: '/', label: 'Home', icon: Home },
+    { path: '/colleges', label: 'Colleges', icon: School },
+    { path: '/careers', label: 'Careers', icon: Briefcase },
+    { path: '/counselling', label: 'Counselling', icon: MessageCircle },
+    { path: '/quiz', label: 'Quiz', icon: ClipboardList },
+    { path: '/scholarships', label: 'Scholarships', icon: Award },
+    { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard }
   ]
 
   useEffect(() => {
@@ -62,7 +79,7 @@ const ResponsiveNavbar = () => {
                     e.target.nextSibling.style.display = 'block';
                   }}
                 />
-                <span className="text-lg sm:text-xl md:text-2xl hidden">🎓</span>
+                <GraduationCap className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-white hidden" />
               </motion.div>
               <div className="hidden xs:block">
                 <h1 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold navbar-title-light group-hover:text-yellow-200 transition-colors duration-300">
@@ -76,25 +93,28 @@ const ResponsiveNavbar = () => {
 
             {/* Desktop Navigation - Hidden on tablet and mobile */}
             <div className="hidden lg:flex items-center space-x-2 xl:space-x-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`relative flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                    location.pathname === item.path
-                      ? 'navbar-text-active'
-                      : 'navbar-text'
-                  }`}
-                >
-                  <span className="text-sm">{item.icon}</span>
-                  <span className="hidden xl:inline">{item.label}</span>
-                  {item.badge && (
-                    <span className="absolute -top-1 -right-1 px-1.5 py-0.5 text-xs bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-bold">
-                      {item.badge}
-                    </span>
-                  )}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`relative flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
+                      location.pathname === item.path
+                        ? 'navbar-text-active'
+                        : 'navbar-text'
+                    }`}
+                  >
+                    <IconComponent className="w-4 h-4" />
+                    <span className="hidden xl:inline">{item.label}</span>
+                    {item.badge && (
+                      <span className="absolute -top-1 -right-1 px-1.5 py-0.5 text-xs bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-bold">
+                        {item.badge}
+                      </span>
+                    )}
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Right side controls - Fully Responsive */}
@@ -103,13 +123,15 @@ const ResponsiveNavbar = () => {
               <SignedOut>
                 <div className="flex items-center space-x-2">
                   <SignInButton mode="modal">
-                    <button className="p-1 sm:p-2 px-2 sm:px-3 rounded-lg text-xs sm:text-sm bg-accent-500 text-white hover:bg-accent-600 transition-all duration-300 transform hover:scale-105 shadow-md">
-                      🔐 Sign In
+                    <button className="flex items-center space-x-1 p-1 sm:p-2 px-2 sm:px-3 rounded-lg text-xs sm:text-sm bg-accent-500 text-white hover:bg-accent-600 transition-all duration-300 transform hover:scale-105 shadow-md">
+                      <LogIn className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <span>Sign In</span>
                     </button>
                   </SignInButton>
                   <SignUpButton mode="modal">
-                    <button className="p-1 sm:p-2 px-2 sm:px-3 rounded-lg text-xs sm:text-sm border-2 border-white text-white hover:bg-white hover:text-blue-800 transition-all duration-300 transform hover:scale-105">
-                      📝 Sign Up
+                    <button className="flex items-center space-x-1 p-1 sm:p-2 px-2 sm:px-3 rounded-lg text-xs sm:text-sm border-2 border-white text-white hover:bg-white hover:text-blue-800 transition-all duration-300 transform hover:scale-105">
+                      <UserPlus className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <span>Sign Up</span>
                     </button>
                   </SignUpButton>
                 </div>
@@ -117,8 +139,9 @@ const ResponsiveNavbar = () => {
               
               <SignedIn>
                 <div className="flex items-center space-x-2">
-                  <span className="hidden sm:inline text-sm navbar-text">
-                    👋 {user?.firstName || 'User'}
+                  <span className="hidden sm:flex items-center gap-1 text-sm navbar-text">
+                    <User className="w-4 h-4" />
+                    {user?.firstName || 'User'}
                   </span>
                   <UserButton 
                     appearance={{
@@ -136,7 +159,7 @@ const ResponsiveNavbar = () => {
                 className="p-1 sm:p-2 rounded-lg navbar-text hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300"
                 aria-label="Toggle theme"
               >
-                <span className="text-base sm:text-lg">{isDark ? '☀️' : '🌙'}</span>
+                {isDark ? <Sun className="w-4 h-4 sm:w-5 sm:h-5" /> : <Moon className="w-4 h-4 sm:w-5 sm:h-5" />}
               </button>
 
               {/* Mobile Menu Button */}
@@ -170,26 +193,29 @@ const ResponsiveNavbar = () => {
           >
             <div className="glass-strong mx-2 sm:mx-4 md:mx-6 rounded-xl p-4 sm:p-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setIsOpen(false)}
-                    className={`relative flex items-center space-x-3 p-3 sm:p-4 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-md ${
-                      location.pathname === item.path
-                        ? 'navbar-text-active'
-                        : 'navbar-text'
-                    }`}
-                  >
-                    <span className="text-lg sm:text-xl">{item.icon}</span>
-                    <span className="text-sm sm:text-base font-medium">{item.label}</span>
-                    {item.badge && (
-                      <span className="px-2 py-1 text-xs bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-bold">
-                        {item.badge}
-                      </span>
-                    )}
-                  </Link>
-                ))}
+                {navItems.map((item) => {
+                  const IconComponent = item.icon;
+                  return (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`relative flex items-center space-x-3 p-3 sm:p-4 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-md ${
+                        location.pathname === item.path
+                          ? 'navbar-text-active'
+                          : 'navbar-text'
+                      }`}
+                    >
+                      <IconComponent className="w-5 h-5 sm:w-6 sm:h-6" />
+                      <span className="text-sm sm:text-base font-medium">{item.label}</span>
+                      {item.badge && (
+                        <span className="px-2 py-1 text-xs bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-bold">
+                          {item.badge}
+                        </span>
+                      )}
+                    </Link>
+                  );
+                })}
               </div>
 
               {/* Mobile Authentication */}
@@ -197,13 +223,15 @@ const ResponsiveNavbar = () => {
                 <SignedOut>
                   <div className="flex flex-col gap-3">
                     <SignInButton mode="modal">
-                      <button className="w-full py-3 px-4 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-all duration-300 font-medium">
-                        🔐 Sign In to Your Account
+                      <button className="w-full flex items-center justify-center space-x-2 py-3 px-4 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-all duration-300 font-medium">
+                        <LogIn className="w-5 h-5" />
+                        <span>Sign In to Your Account</span>
                       </button>
                     </SignInButton>
                     <SignUpButton mode="modal">
-                      <button className="w-full py-3 px-4 border border-primary-500 text-primary-500 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900 transition-all duration-300 font-medium">
-                        📝 Create New Account
+                      <button className="w-full flex items-center justify-center space-x-2 py-3 px-4 border border-primary-500 text-primary-500 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900 transition-all duration-300 font-medium">
+                        <UserPlus className="w-5 h-5" />
+                        <span>Create New Account</span>
                       </button>
                     </SignUpButton>
                   </div>
@@ -233,14 +261,17 @@ const ResponsiveNavbar = () => {
               {/* Mobile Contact Info */}
               <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                 <div className="grid grid-cols-1 gap-2 text-xs sm:text-sm text-adaptive-muted">
-                  <a href="mailto:wajiddaudtamboli123@gmail.com" className="navbar-text hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                    📧 wajiddaudtamboli123@gmail.com
+                  <a href="mailto:wajiddaudtamboli123@gmail.com" className="flex items-center space-x-2 navbar-text hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                    <Mail className="w-4 h-4" />
+                    <span>wajiddaudtamboli123@gmail.com</span>
                   </a>
-                  <a href="tel:+919667033839" className="navbar-text hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                    📞 +91 9667033839
+                  <a href="tel:+919667033839" className="flex items-center space-x-2 navbar-text hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                    <Phone className="w-4 h-4" />
+                    <span>+91 9667033839</span>
                   </a>
-                  <div className="md:hidden navbar-text">
-                    🏫 N.K. Orchid College, Solapur
+                  <div className="md:hidden flex items-center space-x-2 navbar-text">
+                    <School className="w-4 h-4" />
+                    <span>N.K. Orchid College, Solapur</span>
                   </div>
                 </div>
               </div>

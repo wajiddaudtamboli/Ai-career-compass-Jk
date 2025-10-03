@@ -3,6 +3,20 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useMockUser as useUser, MockSignInButton as SignInButton } from '../components/ClerkProviderWrapper'
 import { useLanguage } from '../context/LanguageContext'
 import DynamicProfile from '../components/DynamicProfile'
+import {
+  LayoutDashboard,
+  ClipboardList,
+  Star,
+  LogIn,
+  User,
+  School,
+  Briefcase,
+  Award,
+  TrendingUp,
+  CheckCircle,
+  Calendar,
+  Lightbulb
+} from 'lucide-react'
 
 const Dashboard = () => {
   const { user } = useUser()
@@ -86,12 +100,12 @@ const Dashboard = () => {
   }, [])
 
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: '📊' },
-    { id: 'profile', label: 'Profile', icon: '👤' },
-    { id: 'results', label: 'Quiz Results', icon: '📝' },
-    { id: 'bookmarks', label: 'Bookmarks', icon: '⭐' },
-    { id: 'timeline', label: 'Timeline', icon: '📅' },
-    { id: 'recommendations', label: 'Recommendations', icon: '💡' }
+    { id: 'overview', label: 'Overview', icon: LayoutDashboard },
+    { id: 'profile', label: 'Profile', icon: User },
+    { id: 'results', label: 'Quiz Results', icon: ClipboardList },
+    { id: 'bookmarks', label: 'Bookmarks', icon: Star },
+    { id: 'timeline', label: 'Timeline', icon: Calendar },
+    { id: 'recommendations', label: 'Recommendations', icon: Lightbulb }
   ]
 
   // Show sign-in prompt if user is not authenticated
@@ -104,7 +118,7 @@ const Dashboard = () => {
           className="text-center max-w-md mx-auto"
         >
           <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center">
-            <span className="text-white text-4xl">📊</span>
+            <LayoutDashboard className="w-16 h-16 text-white" />
           </div>
           <h2 className="text-3xl font-bold text-gradient mb-4">Access Your Dashboard</h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8">
@@ -112,7 +126,8 @@ const Dashboard = () => {
           </p>
           <SignInButton mode="modal">
             <div className="btn-primary text-lg px-8 py-4 cursor-pointer">
-              🔐 Sign In to Continue
+              <LogIn className="w-5 h-5 mr-2" />
+              Sign In to Continue
             </div>
           </SignInButton>
           <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
@@ -145,7 +160,7 @@ const Dashboard = () => {
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
               className="text-white text-3xl"
             >
-              📊
+              <LayoutDashboard className="w-6 h-6" />
             </motion.div>
           </div>
           <h2 className="text-2xl font-bold text-gradient mb-2">Loading Your Dashboard</h2>
@@ -167,7 +182,10 @@ const Dashboard = () => {
           className="mb-6 sm:mb-8 px-4"
         >
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gradient mb-2 text-responsive">
-            Welcome back, {userData.profile.name}! 👋
+            <div className="flex items-center gap-2">
+              Welcome back, {userData.profile.name}!
+              <User className="w-5 h-5 text-primary-500" />
+            </div>
           </h1>
           <p className="text-adaptive-secondary text-sm sm:text-base md:text-lg text-responsive">
             Your personalized career guidance dashboard
@@ -225,7 +243,7 @@ const Dashboard = () => {
                     : 'text-gray-600 dark:text-gray-400 hover:text-primary-600 hover:bg-white/50 dark:hover:bg-gray-800/50'
                 }`}
               >
-                <span className="mr-1 sm:mr-2 text-sm sm:text-base">{tab.icon}</span>
+                <tab.icon className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
                 <span className="hidden sm:inline">{tab.label}</span>
                 <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
               </button>
@@ -344,7 +362,10 @@ const Dashboard = () => {
               exit={{ opacity: 0, y: -20 }}
               className="glass-strong p-8 rounded-xl"
             >
-              <h2 className="text-2xl font-bold mb-6 text-adaptive">📝 Aptitude Assessment Results</h2>
+              <h2 className="text-2xl font-bold mb-6 text-adaptive flex items-center gap-2">
+                <ClipboardList className="w-6 h-6" />
+                Aptitude Assessment Results
+              </h2>
               {userData.quizResults.completed ? (
                 <div>
                   <div className="mb-6">
@@ -388,7 +409,9 @@ const Dashboard = () => {
                 </div>
               ) : (
                 <div className="text-center py-12">
-                  <div className="text-6xl mb-4">📝</div>
+                  <div className="mb-4 flex justify-center">
+                    <ClipboardList className="w-16 h-16 text-primary-500" />
+                  </div>
                   <h3 className="text-xl font-semibold mb-2 text-adaptive">No Assessment Completed</h3>
                   <p className="text-gray-600 dark:text-gray-400 mb-6">
                     Take our comprehensive aptitude assessment to get personalized career recommendations.
@@ -409,7 +432,10 @@ const Dashboard = () => {
             >
               {/* Saved Colleges */}
               <div className="glass-strong p-6 rounded-xl">
-                <h2 className="text-xl font-bold mb-6">🏛️ Saved Colleges</h2>
+                <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
+                  <School className="w-5 h-5" />
+                  Saved Colleges
+                </h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {userData.bookmarks.colleges.map((college, index) => (
                     <motion.div
@@ -433,7 +459,10 @@ const Dashboard = () => {
 
               {/* Saved Careers */}
               <div className="glass-strong p-6 rounded-xl">
-                <h2 className="text-xl font-bold mb-6 text-adaptive">💼 Saved Careers</h2>
+                <h2 className="text-xl font-bold mb-6 text-adaptive flex items-center gap-2">
+                  <Briefcase className="w-5 h-5" />
+                  Saved Careers
+                </h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {userData.bookmarks.careers.map((career, index) => (
                     <motion.div
@@ -536,7 +565,10 @@ const Dashboard = () => {
 
               {/* Scholarship Recommendations */}
               <div className="glass-strong p-6 rounded-xl">
-                <h2 className="text-xl font-bold mb-6">💰 Available Scholarships</h2>
+                <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
+                  <Award className="w-5 h-5" />
+                  Available Scholarships
+                </h2>
                 <div className="space-y-4">
                   {userData.recommendations.scholarships.map((scholarship, index) => (
                     <motion.div

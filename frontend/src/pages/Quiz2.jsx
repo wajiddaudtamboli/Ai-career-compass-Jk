@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext'
+import { 
+  Microscope, 
+  TrendingUp, 
+  Palette, 
+  CheckCircle, 
+  XCircle, 
+  Clock, 
+  ArrowRight, 
+  RotateCcw,
+  Trophy,
+  Award,
+  Star
+} from 'lucide-react'
 
 const Quiz = () => {
   const { t } = useLanguage()
@@ -15,7 +28,7 @@ const Quiz = () => {
       id: 'science',
       name: 'Science Stream Questions',
       description: 'Test your knowledge in Science subjects (Class 10 Level)',
-      icon: '�',
+      icon: Microscope,
       color: 'from-blue-500 to-purple-600',
       questions: [
         {
@@ -94,7 +107,7 @@ const Quiz = () => {
       id: 'commerce',
       name: 'Commerce Stream Questions',
       description: 'Test your knowledge in Commerce subjects (Class 10 Level)',
-      icon: '💼',
+      icon: TrendingUp,
       color: 'from-green-500 to-teal-600',
       questions: [
         {
@@ -173,7 +186,7 @@ const Quiz = () => {
       id: 'arts',
       name: 'Arts Stream Questions',
       description: 'Test your knowledge in Arts subjects (Class 10 Level)',
-      icon: '�',
+      icon: Palette,
       color: 'from-orange-500 to-red-600',
       questions: [
         {
@@ -200,49 +213,49 @@ const Quiz = () => {
             { value: 'watercolor', label: 'Watercolor', isCorrect: false }
           ],
           correctAnswer: 'pointillism',
-          explanation: 'Pointillism is a painting technique using small distinct dots of color',
+          explanation: 'Pointillism is a painting technique using small, distinct dots of color',
           difficulty: 'Easy',
           gradeLevel: 10
         },
         {
           id: 'art_3',
-          text: 'Which color do you get by mixing blue and yellow?',
+          text: 'Which country is famous for the "Taj Mahal"?',
           options: [
-            { value: 'red', label: 'Red', isCorrect: false },
-            { value: 'purple', label: 'Purple', isCorrect: false },
-            { value: 'green', label: 'Green', isCorrect: true },
-            { value: 'orange', label: 'Orange', isCorrect: false }
+            { value: 'pakistan', label: 'Pakistan', isCorrect: false },
+            { value: 'india', label: 'India', isCorrect: true },
+            { value: 'bangladesh', label: 'Bangladesh', isCorrect: false },
+            { value: 'afghanistan', label: 'Afghanistan', isCorrect: false }
           ],
-          correctAnswer: 'green',
-          explanation: 'Blue and yellow are primary colors that combine to create green (secondary color)',
+          correctAnswer: 'india',
+          explanation: 'The Taj Mahal is located in Agra, India, and is a UNESCO World Heritage Site',
           difficulty: 'Easy',
           gradeLevel: 10
         },
         {
           id: 'art_4',
-          text: 'Which Indian artist is famous for bold modern paintings and abstract art?',
+          text: 'What is the main tool used for sculpture?',
           options: [
-            { value: 'rajaravi', label: 'Raja Ravi Varma', isCorrect: false },
-            { value: 'amrita', label: 'Amrita Sher-Gil', isCorrect: false },
-            { value: 'husain', label: 'M.F. Husain', isCorrect: true },
-            { value: 'tagore', label: 'Rabindranath Tagore', isCorrect: false }
+            { value: 'brush', label: 'Brush', isCorrect: false },
+            { value: 'chisel', label: 'Chisel', isCorrect: true },
+            { value: 'pencil', label: 'Pencil', isCorrect: false },
+            { value: 'scissors', label: 'Scissors', isCorrect: false }
           ],
-          correctAnswer: 'husain',
-          explanation: 'M.F. Husain was a prominent Indian modernist painter known for bold abstract works',
+          correctAnswer: 'chisel',
+          explanation: 'A chisel is the primary tool used by sculptors to carve and shape materials',
           difficulty: 'Easy',
           gradeLevel: 10
         },
         {
           id: 'art_5',
-          text: 'Which of the following is a Japanese art of paper folding?',
+          text: 'Which of these is a famous dance form of India?',
           options: [
-            { value: 'calligraphy', label: 'Calligraphy', isCorrect: false },
-            { value: 'origami', label: 'Origami', isCorrect: true },
-            { value: 'ikebana', label: 'Ikebana', isCorrect: false },
-            { value: 'sumie', label: 'Sumi-e', isCorrect: false }
+            { value: 'ballet', label: 'Ballet', isCorrect: false },
+            { value: 'tango', label: 'Tango', isCorrect: false },
+            { value: 'bharatanatyam', label: 'Bharatanatyam', isCorrect: true },
+            { value: 'waltz', label: 'Waltz', isCorrect: false }
           ],
-          correctAnswer: 'origami',
-          explanation: 'Origami is the traditional Japanese art of paper folding into decorative shapes',
+          correctAnswer: 'bharatanatyam',
+          explanation: 'Bharatanatyam is one of the eight classical dance forms of India',
           difficulty: 'Easy',
           gradeLevel: 10
         }
@@ -250,104 +263,71 @@ const Quiz = () => {
     }
   ]
 
-  const careerRecommendations = {
-    science: { 
-      name: 'Science Stream', 
-      careers: ['Medicine (MBBS/BDS)', 'Engineering (B.Tech)', 'Research Scientist', 'Biotechnology', 'Pharmacy', 'Nursing'],
-      description: 'Perfect for students interested in scientific research, healthcare, and technology'
-    },
-    commerce: { 
-      name: 'Commerce Stream', 
-      careers: ['Business Management (BBA)', 'Chartered Accountant (CA)', 'Economics', 'Banking & Finance', 'Company Secretary (CS)', 'Digital Marketing'],
-      description: 'Ideal for students interested in business, finance, and entrepreneurship'
-    },
-    arts: { 
-      name: 'Arts Stream', 
-      careers: ['Literature & Languages (BA)', 'Psychology', 'Social Work', 'Journalism', 'Fine Arts', 'History & Archaeology'],
-      description: 'Great for creative minds interested in humanities, social sciences, and creative fields'
+  const calculateResults = (userAnswers) => {
+    const streamScores = {
+      science: 0,
+      commerce: 0,
+      arts: 0
+    }
+
+    const detailedResults = []
+
+    categories.forEach(category => {
+      category.questions.forEach(question => {
+        const userAnswer = userAnswers[question.id]
+        const isCorrect = userAnswer === question.correctAnswer
+
+        if (isCorrect) {
+          streamScores[category.id] += 1
+        }
+
+        detailedResults.push({
+          question: question.text,
+          userAnswer,
+          correctAnswer: question.correctAnswer,
+          isCorrect,
+          explanation: question.explanation,
+          category: category.name,
+          categoryId: category.id
+        })
+      })
+    })
+
+    const totalQuestions = categories.reduce((sum, cat) => sum + cat.questions.length, 0)
+    const totalCorrect = Object.values(streamScores).reduce((sum, score) => sum + score, 0)
+    const percentage = Math.round((totalCorrect / totalQuestions) * 100)
+
+    // Determine recommended stream
+    const maxScore = Math.max(...Object.values(streamScores))
+    const recommendedStreams = Object.keys(streamScores).filter(
+      stream => streamScores[stream] === maxScore
+    )
+
+    return {
+      streamScores,
+      totalCorrect,
+      totalQuestions,
+      percentage,
+      recommendedStreams,
+      detailedResults
     }
   }
 
-  const handleAnswerSelect = (questionId, answer, question) => {
-    setAnswers(prev => ({ 
-      ...prev, 
-      [questionId]: {
-        ...answer,
-        isCorrect: answer.value === question.correctAnswer,
-        explanation: question.explanation
-      }
+  const handleAnswer = (questionId, answer) => {
+    setAnswers(prev => ({
+      ...prev,
+      [questionId]: answer
     }))
   }
 
-  const calculateResults = () => {
+  const handleSubmit = () => {
     setIsLoading(true)
-    
-    // Simulate calculation delay
     setTimeout(() => {
-      const scores = {
-        science: 0,
-        commerce: 0,
-        arts: 0
-      }
-      
-      let totalCorrect = 0
-      let totalQuestions = 0
-
-      // Calculate scores based on correct answers per stream
-      categories.forEach(category => {
-        let streamCorrect = 0
-        category.questions.forEach(question => {
-          totalQuestions++
-          const answer = answers[question.id]
-          if (answer && answer.value === question.correctAnswer) {
-            streamCorrect++
-            totalCorrect++
-          }
-        })
-        
-        // Calculate percentage for this stream
-        const streamPercentage = (streamCorrect / category.questions.length) * 100
-        scores[category.id] = streamPercentage
-      })
-
-      // Sort by highest scores
-      const sortedScores = Object.entries(scores)
-        .sort(([,a], [,b]) => b - a)
-        .slice(0, 3)
-
-      const recommendations = sortedScores.map(([field, score]) => ({
-        field,
-        score: Math.round(score),
-        percentage: Math.round(score),
-        ...careerRecommendations[field]
-      }))
-
-      setResults({
-        topRecommendations: recommendations,
-        allScores: scores,
-        totalQuestions: totalQuestions,
-        answeredQuestions: Object.keys(answers).length,
-        totalCorrect: totalCorrect,
-        overallPercentage: Math.round((totalCorrect / totalQuestions) * 100)
-      })
-
-      setIsLoading(false)
+      const results = calculateResults(answers)
+      setResults(results)
       setShowResults(true)
-    }, 2000)
-  }
-
-  const nextStep = () => {
-    if (currentStep < categories.length - 1) {
-      setCurrentStep(currentStep + 1)
-    } else {
-      calculateResults()
-    }
-  }
-
-  const prevStep = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1)
-    }
+      setIsLoading(false)
+    }, 1500)
   }
 
   const resetQuiz = () => {
@@ -355,169 +335,214 @@ const Quiz = () => {
     setAnswers({})
     setShowResults(false)
     setResults(null)
+    setIsLoading(false)
   }
-
-  const progressPercentage = ((currentStep + 1) / categories.length) * 100
 
   const currentCategory = categories[currentStep]
-  const isStepComplete = currentCategory?.questions.every(q => answers[q.id])
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen pt-24 px-4 flex items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-center"
-        >
-          <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="text-white text-3xl"
-            >
-              ⚡
-            </motion.div>
-          </div>
-          <h2 className="text-2xl font-bold text-gradient mb-2">Calculating Your Scores</h2>
-          <p className="text-gray-600 dark:text-gray-400">
-            Evaluating your performance across different streams to recommend the best path for you...
-          </p>
-        </motion.div>
-      </div>
-    )
-  }
+  const isLastCategory = currentStep === categories.length - 1
 
   if (showResults && results) {
     return (
-      <div className="min-h-screen pt-24 px-4 pb-20">
-        <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900 py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
+            className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8"
           >
-            <h1 className="heading-2 text-gradient mb-4">Your Quiz Results</h1>
-            <p className="text-gray-600 dark:text-gray-300 text-lg">
-              Based on your performance, here are your recommended streams for Class 11
-            </p>
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-xl mb-8">
-              <div className="text-center">
-                <h3 className="text-2xl font-bold text-gradient mb-2">Overall Performance</h3>
-                <div className="text-4xl font-bold text-primary-600 mb-2">{results.overallPercentage}%</div>
-                <p className="text-gray-600 dark:text-gray-400">
-                  You answered {results.totalCorrect} out of {results.totalQuestions} questions correctly
-                </p>
+            {/* Results Header */}
+            <div className="text-center mb-8">
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.3 }}
+                className="w-20 h-20 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4"
+              >
+                <Trophy className="w-10 h-10 text-white" />
+              </motion.div>
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                Quiz Results
+              </h1>
+              <p className="text-gray-600 dark:text-gray-400">
+                Your Career Aptitude Assessment Results
+              </p>
+            </div>
+
+            {/* Score Overview */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-6 text-white">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm opacity-90">Total Score</p>
+                    <p className="text-2xl font-bold">{results.percentage}%</p>
+                  </div>
+                  <Star className="w-8 h-8 opacity-80" />
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-green-500 to-teal-600 rounded-xl p-6 text-white">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm opacity-90">Correct Answers</p>
+                    <p className="text-2xl font-bold">{results.totalCorrect}/{results.totalQuestions}</p>
+                  </div>
+                  <CheckCircle className="w-8 h-8 opacity-80" />
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-orange-500 to-red-600 rounded-xl p-6 text-white">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm opacity-90">Science Stream</p>
+                    <p className="text-2xl font-bold">{results.streamScores.science}/5</p>
+                  </div>
+                  <Microscope className="w-8 h-8 opacity-80" />
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl p-6 text-white">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm opacity-90">Commerce Stream</p>
+                    <p className="text-2xl font-bold">{results.streamScores.commerce}/5</p>
+                  </div>
+                  <TrendingUp className="w-8 h-8 opacity-80" />
+                </div>
               </div>
             </div>
-          </motion.div>
 
-          <div className="grid gap-8">
-            {results.topRecommendations.map((recommendation, index) => (
-              <motion.div
-                key={recommendation.field}
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.2 }}
-                className="glass-strong p-8 rounded-xl"
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-2xl font-bold text-gradient">
-                    #{index + 1} {recommendation.name}
-                  </h3>
-                  <div className="text-right">
-                    <div className="text-3xl font-bold text-primary-600">
-                      {recommendation.percentage}%
+            {/* Stream Analysis */}
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                Stream Analysis
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {categories.map((category) => {
+                  const IconComponent = category.icon
+                  const score = results.streamScores[category.id]
+                  const percentage = Math.round((score / category.questions.length) * 100)
+                  
+                  return (
+                    <div key={category.id} className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6">
+                      <div className="flex items-center mb-4">
+                        <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${category.color} flex items-center justify-center mr-4`}>
+                          <IconComponent className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 dark:text-white">
+                            {category.name.replace(' Questions', '')}
+                          </h3>
+                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                            {score}/{category.questions.length} ({percentage}%)
+                          </p>
+                        </div>
+                      </div>
+                      <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2">
+                        <div 
+                          className={`h-2 rounded-full bg-gradient-to-r ${category.color}`}
+                          style={{ width: `${percentage}%` }}
+                        ></div>
+                      </div>
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">Match</div>
-                  </div>
-                </div>
+                  )
+                })}
+              </div>
+            </div>
 
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-6">
-                  <motion.div
-                    className="bg-gradient-to-r from-primary-500 to-secondary-500 h-2 rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${recommendation.percentage}%` }}
-                    transition={{ duration: 1, delay: index * 0.2 + 0.5 }}
-                  />
-                </div>
+            {/* Recommended Stream */}
+            <div className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                Recommended Stream{results.recommendedStreams.length > 1 ? 's' : ''}
+              </h2>
+              <div className="flex flex-wrap gap-3">
+                {results.recommendedStreams.map(stream => {
+                  const category = categories.find(cat => cat.id === stream)
+                  const IconComponent = category.icon
+                  return (
+                    <div key={stream} className={`flex items-center px-4 py-2 rounded-full bg-gradient-to-r ${category.color} text-white`}>
+                      <IconComponent className="w-5 h-5 mr-2" />
+                      <span className="font-medium capitalize">{stream}</span>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
 
-                <div className="mb-6">
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
-                    {recommendation.description}
-                  </p>
-                  <h4 className="font-semibold mb-3">Recommended Career Paths:</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {recommendation.careers.map((career, careerIndex) => (
-                      <motion.div
-                        key={career}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.2 + careerIndex * 0.1 + 1 }}
-                        className="bg-white dark:bg-gray-800 p-4 rounded-lg text-center font-medium shadow-sm border-l-4 border-primary-500"
-                      >
-                        {career}
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Performance in this stream */}
-                <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg">
-                  <h4 className="font-semibold mb-2">Your Performance in {recommendation.name}:</h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    You scored {recommendation.percentage}% in this stream's questions
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+            {/* Detailed Results */}
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                Detailed Results
+              </h2>
+              <div className="space-y-4">
+                {results.detailedResults.map((result, index) => {
+                  const category = categories.find(cat => cat.id === result.categoryId)
+                  const IconComponent = category.icon
+                  
+                  return (
+                    <div key={index} className={`p-4 rounded-lg border-2 ${
+                      result.isCorrect 
+                        ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20' 
+                        : 'border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-900/20'
+                    }`}>
+                      <div className="flex items-start space-x-3">
+                        <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
+                          result.isCorrect ? 'bg-green-500' : 'bg-red-500'
+                        }`}>
+                          {result.isCorrect ? 
+                            <CheckCircle className="w-5 h-5 text-white" /> : 
+                            <XCircle className="w-5 h-5 text-white" />
+                          }
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center mb-2">
+                            <IconComponent className="w-4 h-4 mr-2 text-gray-600 dark:text-gray-400" />
+                            <span className="text-sm text-gray-600 dark:text-gray-400">
+                              {result.category}
+                            </span>
+                          </div>
+                          <p className="font-medium text-gray-900 dark:text-white mb-2">
+                            {result.question}
+                          </p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                            Your answer: <span className={result.isCorrect ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}>
+                              {result.userAnswer || 'Not answered'}
+                            </span>
+                          </p>
+                          {!result.isCorrect && (
+                            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                              Correct answer: <span className="text-green-600 dark:text-green-400">
+                                {result.correctAnswer}
+                              </span>
+                            </p>
+                          )}
+                          <p className="text-sm text-gray-700 dark:text-gray-300">
+                            {result.explanation}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
 
-          {/* Detailed Answer Review */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5 }}
-            className="mt-12"
-          >
-            <h2 className="text-2xl font-bold text-gradient mb-6 text-center">Answer Review</h2>
-            <div className="space-y-6">
-              {categories.map((category, categoryIndex) => (
-                <div key={category.id} className="glass-light p-6 rounded-xl">
-                  <h3 className="text-xl font-bold mb-4 flex items-center">
-                    <span className="text-2xl mr-3">{category.icon}</span>
-                    {category.name}
-                  </h3>
-                  <div className="space-y-4">
-                    {category.questions.map((question, questionIndex) => {
-                      const userAnswer = answers[question.id]
-                      const isCorrect = userAnswer?.value === question.correctAnswer
-                      return (
-                        <div key={question.id} className={`p-4 rounded-lg border-2 ${\n                          isCorrect \n                            ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20'\n                            : 'border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-900/20'\n                        }`}>\n                          <div className="flex items-start justify-between mb-2">\n                            <h4 className="font-semibold text-gray-800 dark:text-white">\n                              {questionIndex + 1}. {question.text}\n                            </h4>\n                            <span className={`px-2 py-1 rounded text-sm font-medium ${\n                              isCorrect \n                                ? 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100'\n                                : 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100'\n                            }`}>\n                              {isCorrect ? '✓ Correct' : '✗ Incorrect'}\n                            </span>\n                          </div>\n                          <div className="text-sm space-y-2">\n                            <p className="text-gray-600 dark:text-gray-400">\n                              <strong>Your Answer:</strong> {userAnswer?.label || 'Not answered'}\n                            </p>\n                            {!isCorrect && (\n                              <p className="text-gray-600 dark:text-gray-400">\n                                <strong>Correct Answer:</strong> {question.options.find(opt => opt.value === question.correctAnswer)?.label}\n                              </p>\n                            )}\n                            <p className="text-gray-700 dark:text-gray-300 italic">\n                              <strong>Explanation:</strong> {question.explanation}\n                            </p>\n                          </div>\n                        </div>\n                      )\n                    })}\n                  </div>\n                </div>\n              ))}\n            </div>\n          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2 }}
-            className="text-center mt-12"
-          >
-            <div className="space-y-4">
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={resetQuiz}
-                className="btn-primary mr-4"
+                className="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
               >
+                <RotateCcw className="w-5 h-5 mr-2" />
                 Retake Quiz
               </button>
               <button
-                onClick={() => window.location.href = '/colleges'}
-                className="btn-secondary"
+                onClick={() => window.print()}
+                className="flex items-center justify-center px-6 py-3 border-2 border-blue-500 text-blue-500 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300"
               >
-                Explore Colleges
+                <Trophy className="w-5 h-5 mr-2" />
+                Save Results
               </button>
             </div>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
-              Based on your performance, consider the recommended stream for your Class 11 selection
-            </p>
           </motion.div>
         </div>
       </div>
@@ -525,153 +550,152 @@ const Quiz = () => {
   }
 
   return (
-    <div className="min-h-screen pt-24 px-4 pb-20">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-purple-900 py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
+          className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden"
         >
-          <h1 className="heading-2 text-gradient mb-4">Stream Selection Quiz</h1>
-          <p className="text-gray-600 dark:text-gray-300 text-lg">
-            Test your knowledge in different subjects to discover which stream suits you best for Class 11
-          </p>
-        </motion.div>
-
-        {/* Progress Bar */}
-        <div className="mb-12">
-          <div className="flex justify-between items-center mb-4">
-            <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-              Step {currentStep + 1} of {categories.length}
-            </span>
-            <span className="text-sm font-medium text-primary-600">
-              {Math.round(progressPercentage)}% Complete
-            </span>
-          </div>
-          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-            <motion.div
-              className="bg-gradient-to-r from-primary-500 to-secondary-500 h-2 rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: `${progressPercentage}%` }}
-              transition={{ duration: 0.5 }}
-            />
-          </div>
-        </div>
-
-        {/* Current Category */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentStep}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.3 }}
-            className="glass-strong p-8 rounded-xl mb-8"
-          >
-            <div className="text-center mb-8">
-              <div className={`text-6xl mb-4 bg-gradient-to-r ${currentCategory.color} bg-clip-text text-transparent`}>
-                {currentCategory.icon}
+          {/* Header */}
+          <div className="bg-gradient-to-r from-blue-600 to-purple-700 px-8 py-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-2xl font-bold text-white mb-2">
+                  Career Aptitude Assessment
+                </h1>
+                <p className="text-blue-100">
+                  Discover your academic strengths across different streams
+                </p>
               </div>
-              <h2 className="text-3xl font-bold text-gradient mb-2">
-                {currentCategory.name}
-              </h2>
-              <p className="text-gray-600 dark:text-gray-400">
-                {currentCategory.description}
-              </p>
+              <div className="text-right">
+                <div className="text-sm text-blue-100">Progress</div>
+                <div className="text-lg font-semibold text-white">
+                  {currentStep + 1} / {categories.length}
+                </div>
+              </div>
             </div>
+            
+            {/* Progress Bar */}
+            <div className="mt-4">
+              <div className="w-full bg-blue-500/30 rounded-full h-2">
+                <div 
+                  className="bg-white rounded-full h-2 transition-all duration-500"
+                  style={{ width: `${((currentStep + 1) / categories.length) * 100}%` }}
+                ></div>
+              </div>
+            </div>
+          </div>
 
-            <div className="space-y-8">
-              {currentCategory.questions.map((question, questionIndex) => (
+          {/* Content */}
+          <div className="p-8">
+            <AnimatePresence mode="wait">
+              {!isLoading ? (
                 <motion.div
-                  key={question.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: questionIndex * 0.1 }}
-                  className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm"
+                  key={currentStep}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-white">
-                    {question.text}
-                  </h3>
-                  <div className="space-y-3">
-                    {question.options.map((option) => (
-                      <motion.label
-                        key={option.value}
-                        className={`flex items-center p-4 rounded-lg cursor-pointer transition-all duration-300 ${
-                          answers[question.id]?.value === option.value
-                            ? 'bg-primary-50 dark:bg-primary-900/20 border-2 border-primary-500'
-                            : 'bg-gray-50 dark:bg-gray-700 border-2 border-transparent hover:bg-primary-50/50 dark:hover:bg-primary-900/10'
-                        }`}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <input
-                          type="radio"
-                          name={question.id}
-                          value={option.value}
-                          checked={answers[question.id]?.value === option.value}
-                          onChange={() => handleAnswerSelect(question.id, option, question)}
-                          className="sr-only"
-                        />
-                        <div className={`w-5 h-5 rounded-full border-2 mr-4 flex items-center justify-center ${
-                          answers[question.id]?.value === option.value
-                            ? 'border-primary-500 bg-primary-500'
-                            : 'border-gray-300 dark:border-gray-600'
-                        }`}>
-                          {answers[question.id]?.value === option.value && (
-                            <motion.div
-                              initial={{ scale: 0 }}
-                              animate={{ scale: 1 }}
-                              className="w-2 h-2 bg-white rounded-full"
-                            />
-                          )}
+                  {/* Category Header */}
+                  <div className="text-center mb-8">
+                    <div className={`w-16 h-16 mx-auto rounded-full bg-gradient-to-r ${currentCategory.color} flex items-center justify-center mb-4`}>
+                      <currentCategory.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                      {currentCategory.name}
+                    </h2>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      {currentCategory.description}
+                    </p>
+                  </div>
+
+                  {/* Questions */}
+                  <div className="space-y-8">
+                    {currentCategory.questions.map((question, questionIndex) => (
+                      <div key={question.id} className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6">
+                        <div className="flex items-start space-x-4 mb-4">
+                          <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                            <span className="text-white font-bold text-sm">
+                              {questionIndex + 1}
+                            </span>
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
+                              {question.text}
+                            </h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                              {question.options.map((option) => (
+                                <button
+                                  key={option.value}
+                                  onClick={() => handleAnswer(question.id, option.value)}
+                                  className={`p-4 text-left rounded-lg border-2 transition-all duration-300 ${
+                                    answers[question.id] === option.value
+                                      ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                                      : 'border-gray-200 dark:border-gray-600 hover:border-blue-300 hover:bg-blue-50/50 dark:hover:bg-blue-900/10'
+                                  }`}
+                                >
+                                  <span className="text-gray-900 dark:text-white font-medium">
+                                    {option.label}
+                                  </span>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
                         </div>
-                        <span className="text-gray-700 dark:text-gray-300 font-medium">
-                          {option.label}
-                        </span>
-                      </motion.label>
+                      </div>
                     ))}
                   </div>
+
+                  {/* Navigation */}
+                  <div className="flex justify-between items-center mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <button
+                      onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
+                      disabled={currentStep === 0}
+                      className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Previous
+                    </button>
+
+                    {isLastCategory ? (
+                      <button
+                        onClick={handleSubmit}
+                        disabled={Object.keys(answers).length < categories.reduce((sum, cat) => sum + cat.questions.length, 0)}
+                        className="px-8 py-3 bg-gradient-to-r from-green-500 to-blue-600 text-white rounded-lg hover:from-green-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                      >
+                        <Trophy className="w-5 h-5 mr-2" />
+                        Submit Quiz
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => setCurrentStep(currentStep + 1)}
+                        className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center"
+                      >
+                        Next
+                        <ArrowRight className="w-5 h-5 ml-2" />
+                      </button>
+                    )}
+                  </div>
                 </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Navigation */}
-        <div className="flex justify-between items-center">
-          <button
-            onClick={prevStep}
-            disabled={currentStep === 0}
-            className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
-              currentStep === 0
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'btn-glass hover:scale-105'
-            }`}
-          >
-            ← Previous
-          </button>
-
-          <div className="text-center">
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-              {isStepComplete ? 'All questions answered!' : 'Please answer all questions to continue'}
-            </p>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center py-12"
+                >
+                  <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    Calculating Results...
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    Analyzing your responses and determining your aptitude
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-
-          <button
-            onClick={nextStep}
-            disabled={!isStepComplete}
-            className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
-              !isStepComplete
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : currentStep === categories.length - 1
-                ? 'btn-accent hover:scale-105'
-                : 'btn-primary hover:scale-105'
-            }`}
-          >
-            {currentStep === categories.length - 1 ? 'Get Results ✨' : 'Next →'}
-          </button>
-        </div>
+        </motion.div>
       </div>
     </div>
   )
