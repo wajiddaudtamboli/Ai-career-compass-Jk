@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="48" fill="#db2777" stroke="#ffffff" stroke-width="2" />
+  <text x="50" y="35" font-family="Arial" font-size="10" fill="white" text-anchor="middle" font-weight="bold">
+    Government College
+  </text>
+  <text x="50" y="50" font-family="Arial" font-size="10" fill="white" text-anchor="middle" font-weight="bold">
+    for Women
+  </text>
+  <text x="50" y="65" font-family="Arial" font-size="10" fill="white" text-anchor="middle" font-weight="bold">
+    MA Road
+  </text>
+  <text x="50" y="80" font-family="Arial" font-size="10" fill="white" text-anchor="middle" font-weight="bold">
+    Srinagar
+  </text>
+  <path d="M30,20 C40,15 60,15 70,20 L65,15 C55,10 45,10 35,15 Z" fill="#ffffff" />
+</svg>

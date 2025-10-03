@@ -73,7 +73,7 @@ class CompleteDatabaseSetup {
       // Create mock database configuration
       const mockConfig = {
         DATABASE_URL: 'mock://localhost/jk_career_navigator',
-        GEMINI_API_KEY: process.env.GEMINI_API_KEY || 'AIzaSyALm_JHvyrOTpIiDZJawtEMLmM3V0EKKMM',
+        GEMINI_API_KEY: process.env.GEMINI_API_KEY || 'AIzaSyCRbWayf-G_PWPi4N2gBu1IOBMLi1IZrAI',
         PORT: 5002,
         NODE_ENV: 'development',
         MOCK_MODE: 'true'

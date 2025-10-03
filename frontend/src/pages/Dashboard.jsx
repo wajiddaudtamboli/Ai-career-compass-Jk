@@ -246,7 +246,7 @@ const Dashboard = () => {
               >
                 {/* Progress Section - Responsive */}
                 <div className="glass-strong p-4 sm:p-6 rounded-xl">
-                  <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-responsive">📈 Your Progress</h2>
+                  <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-adaptive">📈 Your Progress</h2>
                   <div className="space-y-3 sm:space-y-4">
                     {Object.entries(userData.progress).map(([key, value]) => (
                       <div key={key}>
@@ -271,7 +271,7 @@ const Dashboard = () => {
 
               {/* Recent Activity */}
               <div className="glass-strong p-6 rounded-xl">
-                <h2 className="text-xl font-bold mb-6">🔄 Recent Activity</h2>
+                <h2 className="text-xl font-bold mb-6 text-adaptive">🔄 Recent Activity</h2>
                 <div className="space-y-4">
                   {userData.activities.slice(0, 5).map((activity, index) => (
                     <motion.div
@@ -288,7 +288,7 @@ const Dashboard = () => {
                         'bg-purple-500'
                       }`} />
                       <div className="flex-1">
-                        <p className="text-sm font-medium">{activity.action}</p>
+                        <p className="text-sm font-medium text-adaptive">{activity.action}</p>
                         <p className="text-xs text-gray-600 dark:text-gray-400">{activity.date}</p>
                       </div>
                     </motion.div>
@@ -298,7 +298,7 @@ const Dashboard = () => {
 
               {/* Upcoming Deadlines */}
               <div className="glass-strong p-6 rounded-xl">
-                <h2 className="text-xl font-bold mb-6">⏰ Upcoming Deadlines</h2>
+                <h2 className="text-xl font-bold mb-6 text-adaptive">⏰ Upcoming Deadlines</h2>
                 <div className="space-y-4">
                   {userData.timeline.filter(item => item.status === 'upcoming').slice(0, 3).map((item, index) => (
                     <motion.div
@@ -314,7 +314,7 @@ const Dashboard = () => {
                     >
                       <div className="flex justify-between items-start">
                         <div>
-                          <h3 className="font-semibold">{item.title}</h3>
+                          <h3 className="font-semibold text-adaptive">{item.title}</h3>
                           <p className="text-sm text-gray-600 dark:text-gray-400">{item.date}</p>
                         </div>
                         <span className={`px-2 py-1 rounded-full text-xs ${
@@ -344,7 +344,7 @@ const Dashboard = () => {
               exit={{ opacity: 0, y: -20 }}
               className="glass-strong p-8 rounded-xl"
             >
-              <h2 className="text-2xl font-bold mb-6">📝 Aptitude Assessment Results</h2>
+              <h2 className="text-2xl font-bold mb-6 text-adaptive">📝 Aptitude Assessment Results</h2>
               {userData.quizResults.completed ? (
                 <div>
                   <div className="mb-6">
@@ -389,7 +389,7 @@ const Dashboard = () => {
               ) : (
                 <div className="text-center py-12">
                   <div className="text-6xl mb-4">📝</div>
-                  <h3 className="text-xl font-semibold mb-2">No Assessment Completed</h3>
+                  <h3 className="text-xl font-semibold mb-2 text-adaptive">No Assessment Completed</h3>
                   <p className="text-gray-600 dark:text-gray-400 mb-6">
                     Take our comprehensive aptitude assessment to get personalized career recommendations.
                   </p>
@@ -419,7 +419,7 @@ const Dashboard = () => {
                       transition={{ delay: index * 0.1 }}
                       className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm"
                     >
-                      <h3 className="font-semibold mb-2">{college.name}</h3>
+                      <h3 className="font-semibold mb-2 text-adaptive">{college.name}</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">{college.type}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">📍 {college.district}</p>
                       <div className="flex gap-2 mt-3">
@@ -433,7 +433,7 @@ const Dashboard = () => {
 
               {/* Saved Careers */}
               <div className="glass-strong p-6 rounded-xl">
-                <h2 className="text-xl font-bold mb-6">💼 Saved Careers</h2>
+                <h2 className="text-xl font-bold mb-6 text-adaptive">💼 Saved Careers</h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {userData.bookmarks.careers.map((career, index) => (
                     <motion.div
@@ -443,7 +443,7 @@ const Dashboard = () => {
                       transition={{ delay: index * 0.1 }}
                       className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm"
                     >
-                      <h3 className="font-semibold mb-2">{career.name}</h3>
+                      <h3 className="font-semibold mb-2 text-adaptive">{career.name}</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400">{career.field}</p>
                       <div className="flex gap-2 mt-3">
                         <button className="btn-primary text-xs flex-1">Explore</button>

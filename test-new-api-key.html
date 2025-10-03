@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test New Gemini API Key</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .result {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+        .loading {
+            color: #FFD700;
+        }
+        .success {
+            color: #90EE90;
+        }
+        .error {
+            color: #FF6B6B;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Test New Gemini API Key</h1>
+        <p>Click the buttons below to test different AI features with the new API key:</p>
+        
+        <button onclick="testCareerGuidance()">🎯 Test Career Guidance</button>
+        <button onclick="testRecommendations()">💡 Test Recommendations</button>
+        <button onclick="testScholarships()">💰 Test Scholarships</button>
+        <button onclick="testKnowledgeHub()">🌟 Test Knowledge Hub</button>
+        
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5002/api/ai';
+        
+        function showResult(content, type = 'success') {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.className = `result ${type}`;
+            resultDiv.textContent = content;
+        }
+
+        function showLoading(message) {
+            showResult(`⏳ ${message}...`, 'loading');
+        }
+
+        async function makeRequest(endpoint, data) {
+            try {
+                const response = await fetch(`${API_BASE}${endpoint}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                return result;
+            } catch (error) {
+                throw new Error(`Network error: ${error.message}`);
+            }
+        }
+
+        async function testCareerGuidance() {
+            showLoading('Testing Career Guidance with new API key');
+            
+            try {
+                const result = await makeRequest('/ask-counselor', {
+                    question: "What are the best career options after 12th science in Jammu & Kashmir?",
+                    userProfile: { location: "Jammu & Kashmir", education: "12th Science" }
+                });
+                
+                if (result.success) {
+                    showResult(`✅ Career Guidance Test SUCCESSFUL!\n\nAPI Response:\n${result.response}`, 'success');
+                } else {
+                    showResult(`❌ Career Guidance Test FAILED!\n\nError: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showResult(`❌ Career Guidance Test FAILED!\n\nError: ${error.message}`, 'error');
+            }
+        }
+
+        async function testRecommendations() {
+            showLoading('Testing Stream Recommendations with new API key');
+            
+            try {
+                const result = await makeRequest('/recommend-streams', {
+                    interests: ["technology", "problem-solving"],
+                    skills: ["mathematics", "logical-thinking"],
+                    location: "Jammu & Kashmir"
+                });
+                
+                if (result.success) {
+                    showResult(`✅ Recommendations Test SUCCESSFUL!\n\nAPI Response:\n${result.recommendations}`, 'success');
+                } else {
+                    showResult(`❌ Recommendations Test FAILED!\n\nError: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showResult(`❌ Recommendations Test FAILED!\n\nError: ${error.message}`, 'error');
+            }
+        }
+
+        async function testScholarships() {
+            showLoading('Testing Scholarship Recommendations with new API key');
+            
+            try {
+                const result = await makeRequest('/recommend-scholarships', {
+                    profile: {
+                        category: "General",
+                        income: "Below 5 Lakhs",
+                        education: "12th",
+                        location: "Jammu & Kashmir"
+                    }
+                });
+                
+                if (result.success) {
+                    showResult(`✅ Scholarships Test SUCCESSFUL!\n\nAPI Response:\n${result.scholarships}`, 'success');
+                } else {
+                    showResult(`❌ Scholarships Test FAILED!\n\nError: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showResult(`❌ Scholarships Test FAILED!\n\nError: ${error.message}`, 'error');
+            }
+        }
+
+        async function testKnowledgeHub() {
+            showLoading('Testing Knowledge Hub with new API key');
+            
+            try {
+                const result = await makeRequest('/generate-knowledge', {
+                    topic: "Engineering Colleges in Jammu & Kashmir",
+                    userContext: { location: "Jammu & Kashmir", education: "12th Science" }
+                });
+                
+                if (result.success) {
+                    showResult(`✅ Knowledge Hub Test SUCCESSFUL!\n\nAPI Response:\n${result.content}`, 'success');
+                } else {
+                    showResult(`❌ Knowledge Hub Test FAILED!\n\nError: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showResult(`❌ Knowledge Hub Test FAILED!\n\nError: ${error.message}`, 'error');
+            }
+        }
+
+        // Show initial status
+        window.onload = function() {
+            showResult('🔑 New Gemini API Key: AIzaSyCRbWayf-G_PWPi4N2gBu1IOBMLi1IZrAI\n✅ Backend Server: Running on port 5002\n✅ Frontend Server: Running on port 3000\n\nReady to test AI features!');
+        };
+    </script>
+</body>
+</html>

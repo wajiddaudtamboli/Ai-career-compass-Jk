@@ -39,8 +39,13 @@ dotenv.config();
 // Initialize Express app
 const app = express();
 
-// Trust proxy for Railway deployment (fixes rate limiting errors)
-app.set('trust proxy', true);
+// Only trust proxy in production environment (fixes rate limiting errors)
+if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1); // trust first proxy for Railway deployment
+} else {
+    // Don't use trust proxy in development to avoid rate limiting warnings
+    console.log('✅ Running in development mode - trust proxy disabled');
+}
 const PORT = process.env.PORT || 5002;
 
 // Initialize Google Gemini AI
@@ -122,9 +127,29 @@ app.use(limiter);
 if (process.env.NODE_ENV === 'production') {
     // Serve static files from the frontend build directory
     const frontendDistPath = path.join(__dirname, '..', 'frontend', 'dist');
-    app.use(express.static(frontendDistPath));
+    app.use(express.static(frontendDistPath, {
+        setHeaders: (res, path) => {
+            // Set proper MIME type for SVG files
+            if (path.endsWith('.svg')) {
+                res.setHeader('Content-Type', 'image/svg+xml');
+            }
+        }
+    }));
     
     console.log('📁 Serving static files from:', frontendDistPath);
+} else {
+    // Serve static files from the public directory in development mode
+    const frontendPublicPath = path.join(__dirname, '..', 'frontend', 'public');
+    app.use(express.static(frontendPublicPath, {
+        setHeaders: (res, path) => {
+            // Set proper MIME type for SVG files
+            if (path.endsWith('.svg')) {
+                res.setHeader('Content-Type', 'image/svg+xml');
+            }
+        }
+    }));
+    
+    console.log('📁 Serving development static files from:', frontendPublicPath);
 }
 
 // =============================================================================

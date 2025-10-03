@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#065f46;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="250" fill="url(#headerGrad)" />
+  
+  <!-- Hospital Building -->
+  <rect x="75" y="80" width="250" height="110" fill="#f8fafc" rx="3" />
+  <rect x="125" y="40" width="150" height="40" fill="#f8fafc" rx="3" />
+  
+  <!-- Medical Cross -->
+  <rect x="190" y="30" width="20" height="60" fill="#ef4444" />
+  <rect x="170" y="50" width="60" height="20" fill="#ef4444" />
+  
+  <!-- Windows -->
+  <rect x="100" y="100" width="25" height="25" fill="#e2e8f0" />
+  <rect x="140" y="100" width="25" height="25" fill="#e2e8f0" />
+  <rect x="180" y="100" width="25" height="25" fill="#e2e8f0" />
+  <rect x="220" y="100" width="25" height="25" fill="#e2e8f0" />
+  <rect x="260" y="100" width="25" height="25" fill="#e2e8f0" />
+  
+  <rect x="100" y="140" width="25" height="25" fill="#e2e8f0" />
+  <rect x="140" y="140" width="25" height="25" fill="#e2e8f0" />
+  <rect x="180" y="140" width="25" height="25" fill="#e2e8f0" />
+  <rect x="220" y="140" width="25" height="25" fill="#e2e8f0" />
+  <rect x="260" y="140" width="25" height="25" fill="#e2e8f0" />
+  
+  <!-- Entrance -->
+  <rect x="175" y="165" width="50" height="25" fill="#10b981" />
+  
+  <text x="200" y="220" font-family="Arial" font-size="16" fill="white" text-anchor="middle" font-weight="bold">
+    Government Medical College
+  </text>
+</svg>

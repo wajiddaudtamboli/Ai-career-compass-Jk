@@ -12,135 +12,271 @@ const Quiz = () => {
 
   const categories = [
     {
-      id: 'interests',
-      name: 'Interests & Preferences',
-      description: 'Discover what you enjoy doing',
-      icon: '💡',
+      id: 'science',
+      name: 'Science Stream Questions',
+      description: 'Test your knowledge in Science subjects (Class 10 Level)',
+      icon: '�',
       color: 'from-blue-500 to-purple-600',
       questions: [
         {
-          id: 'int_1',
-          text: 'Which activity interests you the most?',
+          id: 'sci_1',
+          text: 'Which of these is a source of energy?',
           options: [
-            { value: 'research', label: 'Conducting research and experiments', weight: { science: 3, research: 3 } },
-            { value: 'design', label: 'Creating designs and artistic work', weight: { arts: 3, creative: 3 } },
-            { value: 'business', label: 'Managing business operations', weight: { commerce: 3, management: 3 } },
-            { value: 'technology', label: 'Working with computers and technology', weight: { technology: 3, engineering: 2 } }
-          ]
+            { value: 'moon', label: 'Moon', isCorrect: false },
+            { value: 'sun', label: 'Sun', isCorrect: true },
+            { value: 'stone', label: 'Stone', isCorrect: false },
+            { value: 'air', label: 'Air', isCorrect: false }
+          ],
+          correctAnswer: 'sun',
+          explanation: 'The Sun is the primary source of energy for Earth, providing light and heat',
+          difficulty: 'Easy',
+          gradeLevel: 10
         },
         {
-          id: 'int_2',
-          text: 'What type of environment do you prefer to work in?',
+          id: 'sci_2',
+          text: 'Which part of our body pumps blood?',
           options: [
-            { value: 'lab', label: 'Laboratory or research facility', weight: { science: 2, research: 3 } },
-            { value: 'office', label: 'Corporate office environment', weight: { commerce: 2, management: 2 } },
-            { value: 'outdoor', label: 'Outdoor or field work', weight: { agriculture: 3, environmental: 2 } },
-            { value: 'creative', label: 'Studio or creative workspace', weight: { arts: 3, creative: 3 } }
-          ]
+            { value: 'brain', label: 'Brain', isCorrect: false },
+            { value: 'heart', label: 'Heart', isCorrect: true },
+            { value: 'lungs', label: 'Lungs', isCorrect: false },
+            { value: 'stomach', label: 'Stomach', isCorrect: false }
+          ],
+          correctAnswer: 'heart',
+          explanation: 'The heart is a muscular organ that pumps blood throughout the body',
+          difficulty: 'Easy',
+          gradeLevel: 10
         },
         {
-          id: 'int_3',
-          text: 'Which subject did you enjoy most in school?',
+          id: 'sci_3',
+          text: 'Water changes into ice by —',
           options: [
-            { value: 'math', label: 'Mathematics', weight: { science: 2, engineering: 3, technology: 2 } },
-            { value: 'english', label: 'English Literature', weight: { arts: 3, communication: 2 } },
-            { value: 'science', label: 'Physics/Chemistry/Biology', weight: { science: 3, medical: 2 } },
-            { value: 'social', label: 'Social Studies/History', weight: { arts: 2, social_work: 2 } }
-          ]
+            { value: 'boiling', label: 'Boiling', isCorrect: false },
+            { value: 'freezing', label: 'Freezing', isCorrect: true },
+            { value: 'melting', label: 'Melting', isCorrect: false },
+            { value: 'evaporation', label: 'Evaporation', isCorrect: false }
+          ],
+          correctAnswer: 'freezing',
+          explanation: 'Freezing is the process where water changes from liquid to solid state (ice) at 0°C',
+          difficulty: 'Easy',
+          gradeLevel: 10
+        },
+        {
+          id: 'sci_4',
+          text: 'Which metal is used in making electric wires?',
+          options: [
+            { value: 'gold', label: 'Gold', isCorrect: false },
+            { value: 'copper', label: 'Copper', isCorrect: true },
+            { value: 'silver', label: 'Silver', isCorrect: false },
+            { value: 'iron', label: 'Iron', isCorrect: false }
+          ],
+          correctAnswer: 'copper',
+          explanation: 'Copper is widely used for electrical wiring due to its excellent conductivity and affordability',
+          difficulty: 'Easy',
+          gradeLevel: 10
+        },
+        {
+          id: 'sci_5',
+          text: 'Which planet is known as the "Red Planet"?',
+          options: [
+            { value: 'earth', label: 'Earth', isCorrect: false },
+            { value: 'jupiter', label: 'Jupiter', isCorrect: false },
+            { value: 'mars', label: 'Mars', isCorrect: true },
+            { value: 'venus', label: 'Venus', isCorrect: false }
+          ],
+          correctAnswer: 'mars',
+          explanation: 'Mars is called the Red Planet because of iron oxide (rust) on its surface',
+          difficulty: 'Easy',
+          gradeLevel: 10
         }
       ]
     },
     {
-      id: 'aptitude',
-      name: 'Aptitude & Skills',
-      description: 'Assess your natural abilities',
-      icon: '🧠',
+      id: 'commerce',
+      name: 'Commerce Stream Questions',
+      description: 'Test your knowledge in Commerce subjects (Class 10 Level)',
+      icon: '💼',
       color: 'from-green-500 to-teal-600',
       questions: [
         {
-          id: 'apt_1',
-          text: 'How do you approach problem-solving?',
+          id: 'com_1',
+          text: 'What do we call the money a student pays to school every month?',
           options: [
-            { value: 'logical', label: 'Step-by-step logical analysis', weight: { engineering: 3, science: 2, technology: 2 } },
-            { value: 'creative', label: 'Creative and innovative thinking', weight: { arts: 3, creative: 3, design: 2 } },
-            { value: 'collaborative', label: 'Team discussion and brainstorming', weight: { management: 2, social_work: 2 } },
-            { value: 'research', label: 'Detailed research and investigation', weight: { research: 3, science: 2 } }
-          ]
+            { value: 'fine', label: 'Fine', isCorrect: false },
+            { value: 'rent', label: 'Rent', isCorrect: false },
+            { value: 'fee', label: 'Fee', isCorrect: true },
+            { value: 'loan', label: 'Loan', isCorrect: false }
+          ],
+          correctAnswer: 'fee',
+          explanation: 'Fee is the regular payment made for educational services or membership',
+          difficulty: 'Easy',
+          gradeLevel: 10
         },
         {
-          id: 'apt_2',
-          text: 'What is your strongest skill?',
+          id: 'com_2',
+          text: 'If you buy a chocolate for ₹10 and sell it for ₹15, what is the profit?',
           options: [
-            { value: 'analytical', label: 'Analytical thinking', weight: { science: 3, research: 2, technology: 2 } },
-            { value: 'communication', label: 'Communication and presentation', weight: { arts: 2, management: 2, communication: 3 } },
-            { value: 'technical', label: 'Technical and mechanical skills', weight: { engineering: 3, technology: 3 } },
-            { value: 'leadership', label: 'Leadership and management', weight: { management: 3, commerce: 2 } }
-          ]
+            { value: '2', label: '₹2', isCorrect: false },
+            { value: '3', label: '₹3', isCorrect: false },
+            { value: '5', label: '₹5', isCorrect: true },
+            { value: '10', label: '₹10', isCorrect: false }
+          ],
+          correctAnswer: '5',
+          explanation: 'Profit = Selling Price - Cost Price = ₹15 - ₹10 = ₹5',
+          difficulty: 'Easy',
+          gradeLevel: 10
         },
         {
-          id: 'apt_3',
-          text: 'How do you prefer to learn new concepts?',
+          id: 'com_3',
+          text: 'What is the full form of ATM?',
           options: [
-            { value: 'hands_on', label: 'Hands-on practical experience', weight: { engineering: 2, technology: 2, vocational: 3 } },
-            { value: 'theoretical', label: 'Reading and theoretical study', weight: { research: 3, science: 2, arts: 2 } },
-            { value: 'visual', label: 'Visual aids and demonstrations', weight: { creative: 2, arts: 2, design: 3 } },
-            { value: 'discussion', label: 'Group discussions and debates', weight: { social_work: 2, management: 2, communication: 2 } }
-          ]
+            { value: 'anytime', label: 'Any Time Money', isCorrect: false },
+            { value: 'allmachine', label: 'All Time Machine', isCorrect: false },
+            { value: 'allmoney', label: 'All Time Money', isCorrect: false },
+            { value: 'automatic', label: 'Automatic Teller Machine', isCorrect: true }
+          ],
+          correctAnswer: 'automatic',
+          explanation: 'ATM stands for Automatic Teller Machine, used for banking transactions',
+          difficulty: 'Easy',
+          gradeLevel: 10
+        },
+        {
+          id: 'com_4',
+          text: 'Who is called the "Father of Economics"?',
+          options: [
+            { value: 'einstein', label: 'Albert Einstein', isCorrect: false },
+            { value: 'smith', label: 'Adam Smith', isCorrect: true },
+            { value: 'gandhi', label: 'Mahatma Gandhi', isCorrect: false },
+            { value: 'gates', label: 'Bill Gates', isCorrect: false }
+          ],
+          correctAnswer: 'smith',
+          explanation: 'Adam Smith is known as the Father of Economics for his work "The Wealth of Nations"',
+          difficulty: 'Easy',
+          gradeLevel: 10
+        },
+        {
+          id: 'com_5',
+          text: 'If a shopkeeper has 100 pencils and sells 40, how many are left?',
+          options: [
+            { value: '20', label: '20', isCorrect: false },
+            { value: '40', label: '40', isCorrect: false },
+            { value: '50', label: '50', isCorrect: false },
+            { value: '60', label: '60', isCorrect: true }
+          ],
+          correctAnswer: '60',
+          explanation: 'Remaining pencils = Total - Sold = 100 - 40 = 60',
+          difficulty: 'Easy',
+          gradeLevel: 10
         }
       ]
     },
     {
-      id: 'personality',
-      name: 'Personality & Work Style',
-      description: 'Understand your work preferences',
-      icon: '🎭',
+      id: 'arts',
+      name: 'Arts Stream Questions',
+      description: 'Test your knowledge in Arts subjects (Class 10 Level)',
+      icon: '�',
       color: 'from-orange-500 to-red-600',
       questions: [
         {
-          id: 'per_1',
-          text: 'How do you prefer to work?',
+          id: 'art_1',
+          text: 'Who painted the "Mona Lisa"?',
           options: [
-            { value: 'independently', label: 'Independently with minimal supervision', weight: { research: 2, creative: 2, technology: 2 } },
-            { value: 'team', label: 'As part of a collaborative team', weight: { management: 2, social_work: 3, engineering: 1 } },
-            { value: 'leadership', label: 'Leading and directing others', weight: { management: 3, commerce: 2 } },
-            { value: 'support', label: 'Supporting others and providing assistance', weight: { social_work: 3, healthcare: 2 } }
-          ]
+            { value: 'vangogh', label: 'Vincent van Gogh', isCorrect: false },
+            { value: 'davinci', label: 'Leonardo da Vinci', isCorrect: true },
+            { value: 'picasso', label: 'Pablo Picasso', isCorrect: false },
+            { value: 'monet', label: 'Claude Monet', isCorrect: false }
+          ],
+          correctAnswer: 'davinci',
+          explanation: 'Leonardo da Vinci painted the famous Mona Lisa during the Renaissance period',
+          difficulty: 'Easy',
+          gradeLevel: 10
         },
         {
-          id: 'per_2',
-          text: 'What motivates you the most?',
+          id: 'art_2',
+          text: 'What is the technique of applying paint in small dots called?',
           options: [
-            { value: 'achievement', label: 'Personal achievement and recognition', weight: { commerce: 2, management: 2, competitive: 3 } },
-            { value: 'helping', label: 'Helping others and making a difference', weight: { social_work: 3, healthcare: 3, education: 2 } },
-            { value: 'innovation', label: 'Innovation and creating new things', weight: { technology: 3, creative: 3, research: 2 } },
-            { value: 'stability', label: 'Job security and stable income', weight: { government: 3, traditional: 2 } }
-          ]
+            { value: 'fresco', label: 'Fresco', isCorrect: false },
+            { value: 'collage', label: 'Collage', isCorrect: false },
+            { value: 'pointillism', label: 'Pointillism', isCorrect: true },
+            { value: 'watercolor', label: 'Watercolor', isCorrect: false }
+          ],
+          correctAnswer: 'pointillism',
+          explanation: 'Pointillism is a painting technique using small distinct dots of color',
+          difficulty: 'Easy',
+          gradeLevel: 10
         },
         {
-          id: 'per_3',
-          text: 'How do you handle stress and pressure?',
+          id: 'art_3',
+          text: 'Which color do you get by mixing blue and yellow?',
           options: [
-            { value: 'calm', label: 'Stay calm and think rationally', weight: { healthcare: 2, management: 2, science: 2 } },
-            { value: 'seek_help', label: 'Seek help from others', weight: { social_work: 2, collaborative: 2 } },
-            { value: 'break_down', label: 'Break down problems into smaller parts', weight: { engineering: 2, technology: 2, analytical: 2 } },
-            { value: 'take_breaks', label: 'Take breaks and return refreshed', weight: { creative: 2, self_care: 2 } }
-          ]
+            { value: 'red', label: 'Red', isCorrect: false },
+            { value: 'purple', label: 'Purple', isCorrect: false },
+            { value: 'green', label: 'Green', isCorrect: true },
+            { value: 'orange', label: 'Orange', isCorrect: false }
+          ],
+          correctAnswer: 'green',
+          explanation: 'Blue and yellow are primary colors that combine to create green (secondary color)',
+          difficulty: 'Easy',
+          gradeLevel: 10
+        },
+        {
+          id: 'art_4',
+          text: 'Which Indian artist is famous for bold modern paintings and abstract art?',
+          options: [
+            { value: 'rajaravi', label: 'Raja Ravi Varma', isCorrect: false },
+            { value: 'amrita', label: 'Amrita Sher-Gil', isCorrect: false },
+            { value: 'husain', label: 'M.F. Husain', isCorrect: true },
+            { value: 'tagore', label: 'Rabindranath Tagore', isCorrect: false }
+          ],
+          correctAnswer: 'husain',
+          explanation: 'M.F. Husain was a prominent Indian modernist painter known for bold abstract works',
+          difficulty: 'Easy',
+          gradeLevel: 10
+        },
+        {
+          id: 'art_5',
+          text: 'Which of the following is a Japanese art of paper folding?',
+          options: [
+            { value: 'calligraphy', label: 'Calligraphy', isCorrect: false },
+            { value: 'origami', label: 'Origami', isCorrect: true },
+            { value: 'ikebana', label: 'Ikebana', isCorrect: false },
+            { value: 'sumie', label: 'Sumi-e', isCorrect: false }
+          ],
+          correctAnswer: 'origami',
+          explanation: 'Origami is the traditional Japanese art of paper folding into decorative shapes',
+          difficulty: 'Easy',
+          gradeLevel: 10
         }
       ]
     }
   ]
 
   const careerRecommendations = {
-    science: { name: 'Science Stream', careers: ['Medicine', 'Engineering', 'Research', 'Biotechnology'] },
-    commerce: { name: 'Commerce Stream', careers: ['Business Management', 'Accounting', 'Economics', 'Banking'] },
-    arts: { name: 'Arts Stream', careers: ['Literature', 'Psychology', 'Social Work', 'Journalism'] },
-    technology: { name: 'Technology', careers: ['Software Development', 'Data Science', 'Cybersecurity', 'AI/ML'] },
-    creative: { name: 'Creative Fields', careers: ['Graphic Design', 'Fine Arts', 'Architecture', 'Film Making'] },
-    management: { name: 'Management', careers: ['MBA', 'Project Management', 'Human Resources', 'Operations'] }
+    science: { 
+      name: 'Science Stream', 
+      careers: ['Medicine (MBBS/BDS)', 'Engineering (B.Tech)', 'Research Scientist', 'Biotechnology', 'Pharmacy', 'Nursing'],
+      description: 'Perfect for students interested in scientific research, healthcare, and technology'
+    },
+    commerce: { 
+      name: 'Commerce Stream', 
+      careers: ['Business Management (BBA)', 'Chartered Accountant (CA)', 'Economics', 'Banking & Finance', 'Company Secretary (CS)', 'Digital Marketing'],
+      description: 'Ideal for students interested in business, finance, and entrepreneurship'
+    },
+    arts: { 
+      name: 'Arts Stream', 
+      careers: ['Literature & Languages (BA)', 'Psychology', 'Social Work', 'Journalism', 'Fine Arts', 'History & Archaeology'],
+      description: 'Great for creative minds interested in humanities, social sciences, and creative fields'
+    }
   }
 
-  const handleAnswerSelect = (questionId, answer) => {
-    setAnswers(prev => ({ ...prev, [questionId]: answer }))
+  const handleAnswerSelect = (questionId, answer, question) => {
+    setAnswers(prev => ({ 
+      ...prev, 
+      [questionId]: {
+        ...answer,
+        isCorrect: answer.value === question.correctAnswer,
+        explanation: question.explanation
+      }
+    }))
   }
 
   const calculateResults = () => {
@@ -148,28 +284,30 @@ const Quiz = () => {
     
     // Simulate calculation delay
     setTimeout(() => {
-      const scores = {}
+      const scores = {
+        science: 0,
+        commerce: 0,
+        arts: 0
+      }
       
-      // Initialize scores
-      Object.keys(careerRecommendations).forEach(key => {
-        scores[key] = 0
-      })
+      let totalCorrect = 0
+      let totalQuestions = 0
 
-      // Calculate scores based on answers
+      // Calculate scores based on correct answers per stream
       categories.forEach(category => {
+        let streamCorrect = 0
         category.questions.forEach(question => {
+          totalQuestions++
           const answer = answers[question.id]
-          if (answer) {
-            const option = question.options.find(opt => opt.value === answer.value)
-            if (option && option.weight) {
-              Object.entries(option.weight).forEach(([field, weight]) => {
-                if (scores[field] !== undefined) {
-                  scores[field] += weight
-                }
-              })
-            }
+          if (answer && answer.value === question.correctAnswer) {
+            streamCorrect++
+            totalCorrect++
           }
         })
+        
+        // Calculate percentage for this stream
+        const streamPercentage = (streamCorrect / category.questions.length) * 100
+        scores[category.id] = streamPercentage
       })
 
       // Sort by highest scores
@@ -179,16 +317,18 @@ const Quiz = () => {
 
       const recommendations = sortedScores.map(([field, score]) => ({
         field,
-        score,
-        percentage: Math.min(Math.round((score / 15) * 100), 100),
+        score: Math.round(score),
+        percentage: Math.round(score),
         ...careerRecommendations[field]
       }))
 
       setResults({
         topRecommendations: recommendations,
         allScores: scores,
-        totalQuestions: categories.reduce((sum, cat) => sum + cat.questions.length, 0),
-        answeredQuestions: Object.keys(answers).length
+        totalQuestions: totalQuestions,
+        answeredQuestions: Object.keys(answers).length,
+        totalCorrect: totalCorrect,
+        overallPercentage: Math.round((totalCorrect / totalQuestions) * 100)
       })
 
       setIsLoading(false)
@@ -239,9 +379,9 @@ const Quiz = () => {
               ⚡
             </motion.div>
           </div>
-          <h2 className="text-2xl font-bold text-gradient mb-2">Analyzing Your Responses</h2>
+          <h2 className="text-2xl font-bold text-gradient mb-2">Calculating Your Scores</h2>
           <p className="text-gray-600 dark:text-gray-400">
-            Our AI is processing your answers to provide personalized recommendations...
+            Evaluating your performance across different streams to recommend the best path for you...
           </p>
         </motion.div>
       </div>
@@ -257,10 +397,19 @@ const Quiz = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <h1 className="heading-2 text-gradient mb-4">Your Career Assessment Results</h1>
+            <h1 className="heading-2 text-gradient mb-4">Your Quiz Results</h1>
             <p className="text-gray-600 dark:text-gray-300 text-lg">
-              Based on your responses, here are your personalized career recommendations
+              Based on your performance, here are your recommended streams for Class 11
             </p>
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-xl mb-8">
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-gradient mb-2">Overall Performance</h3>
+                <div className="text-4xl font-bold text-primary-600 mb-2">{results.overallPercentage}%</div>
+                <p className="text-gray-600 dark:text-gray-400">
+                  You answered {results.totalCorrect} out of {results.totalQuestions} questions correctly
+                </p>
+              </div>
+            </div>
           </motion.div>
 
           <div className="grid gap-8">
@@ -293,30 +442,63 @@ const Quiz = () => {
                   />
                 </div>
 
-                <div>
+                <div className="mb-6">
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                    {recommendation.description}
+                  </p>
                   <h4 className="font-semibold mb-3">Recommended Career Paths:</h4>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {recommendation.careers.map((career, careerIndex) => (
                       <motion.div
                         key={career}
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.2 + careerIndex * 0.1 + 1 }}
-                        className="bg-white dark:bg-gray-800 p-3 rounded-lg text-center text-sm font-medium shadow-sm"
+                        className="bg-white dark:bg-gray-800 p-4 rounded-lg text-center font-medium shadow-sm border-l-4 border-primary-500"
                       >
                         {career}
                       </motion.div>
                     ))}
                   </div>
                 </div>
+                
+                {/* Performance in this stream */}
+                <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg">
+                  <h4 className="font-semibold mb-2">Your Performance in {recommendation.name}:</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    You scored {recommendation.percentage}% in this stream's questions
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
 
+          {/* Detailed Answer Review */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
+            transition={{ delay: 1.5 }}
+            className="mt-12"
+          >
+            <h2 className="text-2xl font-bold text-gradient mb-6 text-center">Answer Review</h2>
+            <div className="space-y-6">
+              {categories.map((category, categoryIndex) => (
+                <div key={category.id} className="glass-light p-6 rounded-xl">
+                  <h3 className="text-xl font-bold mb-4 flex items-center">
+                    <span className="text-2xl mr-3">{category.icon}</span>
+                    {category.name}
+                  </h3>
+                  <div className="space-y-4">
+                    {category.questions.map((question, questionIndex) => {
+                      const userAnswer = answers[question.id]
+                      const isCorrect = userAnswer?.value === question.correctAnswer
+                      return (
+                        <div key={question.id} className={`p-4 rounded-lg border-2 ${\n                          isCorrect \n                            ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20'\n                            : 'border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-900/20'\n                        }`}>\n                          <div className="flex items-start justify-between mb-2">\n                            <h4 className="font-semibold text-gray-800 dark:text-white">\n                              {questionIndex + 1}. {question.text}\n                            </h4>\n                            <span className={`px-2 py-1 rounded text-sm font-medium ${\n                              isCorrect \n                                ? 'bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100'\n                                : 'bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100'\n                            }`}>\n                              {isCorrect ? '✓ Correct' : '✗ Incorrect'}\n                            </span>\n                          </div>\n                          <div className="text-sm space-y-2">\n                            <p className="text-gray-600 dark:text-gray-400">\n                              <strong>Your Answer:</strong> {userAnswer?.label || 'Not answered'}\n                            </p>\n                            {!isCorrect && (\n                              <p className="text-gray-600 dark:text-gray-400">\n                                <strong>Correct Answer:</strong> {question.options.find(opt => opt.value === question.correctAnswer)?.label}\n                              </p>\n                            )}\n                            <p className="text-gray-700 dark:text-gray-300 italic">\n                              <strong>Explanation:</strong> {question.explanation}\n                            </p>\n                          </div>\n                        </div>\n                      )\n                    })}\n                  </div>\n                </div>\n              ))}\n            </div>\n          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2 }}
             className="text-center mt-12"
           >
             <div className="space-y-4">
@@ -324,7 +506,7 @@ const Quiz = () => {
                 onClick={resetQuiz}
                 className="btn-primary mr-4"
               >
-                Retake Assessment
+                Retake Quiz
               </button>
               <button
                 onClick={() => window.location.href = '/colleges'}
@@ -333,6 +515,9 @@ const Quiz = () => {
                 Explore Colleges
               </button>
             </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-4">
+              Based on your performance, consider the recommended stream for your Class 11 selection
+            </p>
           </motion.div>
         </div>
       </div>
@@ -348,9 +533,9 @@ const Quiz = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h1 className="heading-2 text-gradient mb-4">Career Aptitude Assessment</h1>
+          <h1 className="heading-2 text-gradient mb-4">Stream Selection Quiz</h1>
           <p className="text-gray-600 dark:text-gray-300 text-lg">
-            Discover your strengths and find the perfect career path tailored for J&K opportunities
+            Test your knowledge in different subjects to discover which stream suits you best for Class 11
           </p>
         </motion.div>
 
@@ -425,7 +610,7 @@ const Quiz = () => {
                           name={question.id}
                           value={option.value}
                           checked={answers[question.id]?.value === option.value}
-                          onChange={() => handleAnswerSelect(question.id, option)}
+                          onChange={() => handleAnswerSelect(question.id, option, question)}
                           className="sr-only"
                         />
                         <div className={`w-5 h-5 rounded-full border-2 mr-4 flex items-center justify-center ${

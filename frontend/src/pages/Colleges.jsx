@@ -28,8 +28,8 @@ const Colleges = () => {
       type: 'University',
       established: 1948,
       naacGrade: 'A',
-      image: '/api/placeholder/400/250',
-      logo: '/api/placeholder/100/100',
+      image: '/images/colleges/kashmir-university.jpg',
+      logo: '/images/logos/kashmir-university-logo.png',
       streams: ['Science', 'Arts', 'Commerce', 'Engineering', 'Medicine'],
       courses: ['B.A.', 'B.Sc.', 'B.Com', 'B.Tech', 'MBBS', 'M.A.', 'M.Sc.', 'Ph.D'],
       facilities: ['Library', 'Hostels', 'Labs', 'Sports', 'Medical', 'WiFi'],
@@ -57,8 +57,8 @@ const Colleges = () => {
       type: 'University',
       established: 1969,
       naacGrade: 'A',
-      image: '/api/placeholder/400/250',
-      logo: '/api/placeholder/100/100',
+      image: '/images/colleges/jammu-university.jpg',
+      logo: '/images/logos/jammu-university-logo.png',
       streams: ['Science', 'Arts', 'Commerce', 'Engineering', 'Law'],
       courses: ['B.A.', 'B.Sc.', 'B.Com', 'B.Tech', 'LLB', 'M.A.', 'M.Sc.', 'Ph.D'],
       facilities: ['Library', 'Hostels', 'Labs', 'Sports', 'Medical', 'WiFi', 'Auditorium'],
@@ -86,8 +86,8 @@ const Colleges = () => {
       type: 'Engineering Institute',
       established: 1960,
       naacGrade: 'A+',
-      image: '/api/placeholder/400/250',
-      logo: '/api/placeholder/100/100',
+      image: '/images/colleges/nit-srinagar.jpg',
+      logo: '/images/logos/nit-srinagar-logo.png',
       streams: ['Engineering', 'Technology'],
       courses: ['B.Tech', 'M.Tech', 'Ph.D'],
       facilities: ['Library', 'Hostels', 'Labs', 'Sports', 'Medical', 'WiFi', 'Research Centers'],
@@ -115,8 +115,8 @@ const Colleges = () => {
       type: 'Medical College',
       established: 1959,
       naacGrade: 'A',
-      image: '/api/placeholder/400/250',
-      logo: '/api/placeholder/100/100',
+      image: '/images/colleges/medical-college-srinagar.jpg',
+      logo: '/images/logos/medical-college-logo.png',
       streams: ['Medicine', 'Dental', 'Nursing'],
       courses: ['MBBS', 'BDS', 'B.Sc Nursing', 'MD', 'MS', 'MDS'],
       facilities: ['Hospital', 'Labs', 'Library', 'Hostels', 'Research Centers'],
@@ -144,8 +144,8 @@ const Colleges = () => {
       type: 'Government College',
       established: 1950,
       naacGrade: 'B+',
-      image: '/api/placeholder/400/250',
-      logo: '/api/placeholder/100/100',
+      image: '/images/colleges/womens-college-srinagar.jpg',
+      logo: '/images/logos/womens-college-logo.png',
       streams: ['Arts', 'Science', 'Commerce'],
       courses: ['B.A.', 'B.Sc.', 'B.Com', 'M.A.', 'M.Sc.', 'M.Com'],
       facilities: ['Library', 'Labs', 'Computer Center', 'Canteen'],
@@ -173,8 +173,8 @@ const Colleges = () => {
       type: 'Private University',
       established: 2005,
       naacGrade: 'A',
-      image: '/api/placeholder/400/250',
-      logo: '/api/placeholder/100/100',
+      image: '/images/colleges/islamic-university.jpg',
+      logo: '/images/logos/islamic-university-logo.png',
       streams: ['Engineering', 'Medicine', 'Management', 'Sciences'],
       courses: ['B.Tech', 'MBBS', 'MBA', 'B.Sc.', 'M.Tech', 'MD'],
       facilities: ['Library', 'Hostels', 'Labs', 'Sports', 'Medical', 'WiFi', 'Mosque'],
@@ -202,13 +202,50 @@ const Colleges = () => {
   const streams = ['All', 'Science', 'Arts', 'Commerce', 'Engineering', 'Medicine', 'Law', 'Management']
   const facilitiesOptions = ['Library', 'Hostels', 'Labs', 'Sports', 'Medical', 'WiFi', 'Auditorium', 'Research Centers']
 
+  // Function to get correct image path based on API availability
+  const getImagePath = (college, type) => {
+    const usePlaceholderAPI = localStorage.getItem('usePlaceholderAPI') === 'true';
+    
+    if (usePlaceholderAPI) {
+      // Use original placeholder API paths
+      return type === 'image' ? '/api/placeholder/400/250' : '/api/placeholder/100/100';
+    } else {
+      // Use our local image paths
+      if (type === 'image') {
+        const collegeSlug = college.name
+          .toLowerCase()
+          .replace(/\s+/g, '-')
+          .replace(/&/g, 'and')
+          .replace(/[^\w-]+/g, '');
+          
+        // Try to find a matching local SVG image first, then fall back to JPG
+        return `/images/colleges/${collegeSlug}.svg`;
+      } else {
+        // Logo
+        const collegeSlug = college.name
+          .toLowerCase()
+          .replace(/\s+/g, '-')
+          .replace(/&/g, 'and')
+          .replace(/[^\w-]+/g, '');
+          
+        // Use SVG logos instead of PNG
+        return `/images/logos/${collegeSlug}-logo.svg`;
+      }
+    }
+  };
+  
   useEffect(() => {
-    // Simulate API call
+    // Simulate API call and prepare image paths
     setTimeout(() => {
-      setColleges(mockColleges)
-      setFilteredColleges(mockColleges)
-      setIsLoading(false)
-    }, 1000)
+      // Create a copy with updated image paths if necessary
+      const processedColleges = mockColleges.map(college => ({
+        ...college
+      }));
+      
+      setColleges(processedColleges);
+      setFilteredColleges(processedColleges);
+      setIsLoading(false);
+    }, 1000);
   }, [])
 
   useEffect(() => {
@@ -490,9 +527,14 @@ const Colleges = () => {
                 <div className={`${viewMode === 'list' ? 'w-64 flex-shrink-0' : ''}`}>
                   <div className="relative">
                     <img
-                      src={college.image}
+                      src={getImagePath(college, 'image')}
                       alt={college.name}
                       className="w-full h-48 object-cover rounded-lg"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "/images/colleges/fallback-college.svg";
+                        console.log("Image failed to load:", college.name);
+                      }}
                     />
                     <div className="absolute top-2 right-2 bg-white dark:bg-gray-800 px-2 py-1 rounded-full text-sm font-semibold">
                       ⭐ {college.rating}
@@ -612,9 +654,14 @@ const Colleges = () => {
             >
               <div className="relative">
                 <img
-                  src={selectedCollege.image}
+                  src={getImagePath(selectedCollege, 'image')}
                   alt={selectedCollege.name}
                   className="w-full h-64 object-cover rounded-t-xl"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "/images/colleges/fallback-college.svg";
+                    console.log("Detail image failed to load:", selectedCollege.name);
+                  }}
                 />
                 <button
                   onClick={() => setSelectedCollege(null)}

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useTheme } from '../context/ThemeContext'
 import TestimonialSlider from '../components/TestimonialSlider'
+import AIFeaturesShowcase from '../components/AIFeaturesShowcase'
 
 const Home = () => {
   const { theme } = useTheme()
@@ -101,8 +102,8 @@ const Home = () => {
   return (
     <div className="min-h-screen overflow-x-hidden">
       {/* Hero Section - Fully Responsive */}
-      <section className="pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-20 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900" />
+      <section className="pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-20 px-4 relative overflow-hidden hero-bg">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-50/80 via-secondary-50/80 to-accent-50/80 dark:from-gray-900/90 dark:via-gray-800/90 dark:to-gray-900/90" />
         <div className="absolute inset-0 bg-pattern opacity-10" />
         
         <div className="max-w-7xl mx-auto relative w-full">
@@ -113,7 +114,7 @@ const Home = () => {
             className="text-center w-full"
           >
             <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gradient mb-4 sm:mb-6 px-2 text-responsive"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gradient-premium mb-4 sm:mb-6 px-2 text-responsive"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
@@ -122,7 +123,7 @@ const Home = () => {
             </motion.h1>
             
             <motion.p
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-adaptive-secondary mb-6 sm:mb-8 max-w-3xl mx-auto px-4 text-responsive"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-subtitle-yellow mb-6 sm:mb-8 max-w-3xl mx-auto px-4 text-responsive"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -159,7 +160,7 @@ const Home = () => {
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <div className="text-xl sm:text-2xl md:text-3xl mb-1 sm:mb-2">{stat.icon}</div>
-                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-primary-600 mb-1" id="stats-section">
+                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-stats-yellow mb-1" id="stats-section">
                     {index === 0 ? `${stats.students.toLocaleString()}+` :
                      index === 1 ? `${stats.colleges}+` :
                      index === 2 ? `${stats.careers}+` :
@@ -212,6 +213,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* AI Features Showcase */}
+      <AIFeaturesShowcase />
 
       {/* How It Works Section */}
       <section className="py-20 px-4 bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-gray-800 dark:to-gray-900">

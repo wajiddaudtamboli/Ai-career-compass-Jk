@@ -12,6 +12,7 @@ import dataRoutes from './routes/dataRoutes.js';
 import enhancedDataRoutes from './routes/enhancedDataRoutes-simple.js';
 import geminiRoutes from './routes/geminiRoutes.js';
 import aiRoutes from './routes/aiRoutes.js';
+import enhancedAIRoutes from './routes/enhancedAIRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
 import { testConnection, healthCheck } from './db/connection.js';
@@ -117,6 +118,7 @@ app.use('/api/v1', enhancedDataRoutes); // Enhanced dynamic content routes
 app.use('/api/gemini', geminiRoutes);   // Gemini cryptocurrency API routes
 app.use('/api', dataRoutes);            // Legacy routes for backward compatibility
 app.use('/api', aiRoutes);              // AI chat routes
+app.use('/api/ai', enhancedAIRoutes);   // Enhanced AI-powered features
 app.use('/api/auth', authRoutes);       // Authentication routes
 app.use('/api', profileRoutes);         // User profile routes
 

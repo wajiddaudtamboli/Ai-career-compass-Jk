@@ -243,11 +243,12 @@ body.dark {
 }
 
 .glass-navbar {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(30, 58, 138, 0.95); /* Deep blue brand color */
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  color: #1f2937; /* Dark text for light background */
+  border-bottom: 1px solid rgba(30, 58, 138, 0.3);
+  color: #ffffff; /* White text for dark background */
+  box-shadow: 0 4px 20px rgba(30, 58, 138, 0.2);
 }
 
 .dark .glass {
@@ -268,9 +269,10 @@ body.dark {
 }
 
 .dark .glass-navbar {
-  background: rgba(17, 24, 39, 0.95);
-  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
-  color: #f9fafb; /* Light text for dark background */
+  background: rgba(15, 30, 90, 0.98); /* Darker brand blue for dark mode */
+  border-bottom: 1px solid rgba(30, 58, 138, 0.4);
+  color: #f1f5f9; /* Slightly off-white for better readability */
+  box-shadow: 0 4px 20px rgba(15, 30, 90, 0.3);
 }
 
 /* Gradient Backgrounds */
@@ -308,32 +310,175 @@ body.dark {
   font-weight: 700;
 }
 
+/* Dark mode text gradient with better visibility */
+.dark .text-gradient {
+  background: linear-gradient(135deg, #60A5FA 0%, #34D399 50%, #FBBF24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  filter: brightness(1.2) contrast(1.1);
+}
+
+/* Fallback for browsers that don't support background-clip */
+@supports not (-webkit-background-clip: text) {
+  .dark .text-gradient {
+    background: none;
+    color: #60A5FA;
+    font-weight: 700;
+    text-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.8),
+      0 0 20px rgba(96, 165, 250, 0.4);
+  }
+}
+
+/* Premium Golden Gradient for Main Titles */
+.text-gradient-premium {
+  background: linear-gradient(135deg, #1E40AF 0%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+/* Dark mode premium yellow gradient */
+.dark .text-gradient-premium {
+  background: linear-gradient(135deg, #FBBF24 0%, #FDE047 50%, #FACC15 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  filter: brightness(1.2) contrast(1.1) saturate(1.1);
+  text-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(251, 191, 36, 0.4),
+    0 0 50px rgba(253, 224, 71, 0.3);
+}
+
+/* Fallback for premium yellow gradient */
+@supports not (-webkit-background-clip: text) {
+  .dark .text-gradient-premium {
+    background: none;
+    color: #FBBF24;
+    font-weight: 700;
+    text-shadow: 
+      0 3px 6px rgba(0, 0, 0, 0.9),
+      0 0 25px rgba(251, 191, 36, 0.5),
+      0 0 40px rgba(253, 224, 71, 0.3);
+  }
+}
+
+/* Yellow Statistics Styling */
+.text-stats-yellow {
+  color: #1E40AF; /* Primary blue for light mode */
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.dark .text-stats-yellow {
+  color: #FEF08A;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.7),
+    0 0 15px rgba(254, 240, 138, 0.4),
+    0 0 25px rgba(253, 224, 71, 0.3);
+  filter: brightness(1.1) contrast(1.1);
+}
+
+.dark .text-stats-yellow:hover {
+  color: #FDE047;
+  text-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(253, 224, 71, 0.5),
+    0 0 30px rgba(250, 204, 21, 0.4);
+  transform: scale(1.05);
+}
+
+/* Enhanced glass effect for statistics cards in dark mode */
+.dark #stats-section {
+  position: relative;
+}
+
+.dark .glass:has(#stats-section) {
+  background: rgba(15, 30, 90, 0.15);
+  border: 1px solid rgba(254, 240, 138, 0.1);
+  box-shadow: 
+    0 8px 32px 0 rgba(15, 30, 90, 0.2),
+    0 0 20px rgba(254, 240, 138, 0.05);
+}
+
+.dark .glass:has(#stats-section):hover {
+  border: 1px solid rgba(254, 240, 138, 0.2);
+  box-shadow: 
+    0 12px 40px 0 rgba(15, 30, 90, 0.3),
+    0 0 30px rgba(254, 240, 138, 0.1);
+}
+
+/* Yellow Subtitle Styling */
+.text-subtitle-yellow {
+  color: #64748b; /* Slate gray for light mode */
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.dark .text-subtitle-yellow {
+  color: #FEF3C7;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    0 0 12px rgba(254, 243, 199, 0.3),
+    0 0 20px rgba(253, 230, 138, 0.2);
+  filter: brightness(1.05) contrast(1.05);
+}
+
+/* Enhanced yellow subtitle in hero background */
+.dark .hero-bg .text-subtitle-yellow {
+  color: #FEF3C7;
+  text-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.7),
+    0 0 15px rgba(254, 243, 199, 0.4),
+    0 0 25px rgba(253, 230, 138, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.5);
+  filter: brightness(1.1) contrast(1.1);
+}
+
 /* Navbar Text Utilities */
 .navbar-text {
-  color: #374151 !important; /* Dark gray for light mode */
-  transition: color 0.3s ease;
+  color: #f1f5f9 !important; /* Light color for dark blue background */
+  transition: all 0.3s ease;
 }
 
 .navbar-text:hover {
-  color: #1f2937 !important; /* Darker on hover */
+  color: #ffffff !important; /* Pure white on hover */
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.5rem;
 }
 
 .dark .navbar-text {
-  color: #f3f4f6 !important; /* Light gray for dark mode */
+  color: #e2e8f0 !important; /* Slightly muted light color for dark mode */
 }
 
 .dark .navbar-text:hover {
-  color: #ffffff !important; /* White on hover in dark mode */
+  color: #ffffff !important; /* Pure white on hover in dark mode */
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border-radius: 0.5rem;
 }
 
 .navbar-text-active {
-  color: #1e40af !important; /* Blue for active states */
-  background: rgba(30, 64, 175, 0.1);
+  color: #ffffff !important; /* White text for active state */
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 0.5rem;
+  font-weight: 600 !important;
+  border-bottom: 2px solid #fbbf24 !important; /* Golden accent underline */
+  position: relative;
 }
 
 .dark .navbar-text-active {
-  color: #60a5fa !important; /* Light blue for dark mode */
-  background: rgba(96, 165, 250, 0.1);
+  color: #ffffff !important; /* Pure white for dark mode active */
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-bottom: 2px solid #f59e0b !important; /* Slightly different gold for dark mode */
+  font-weight: 600 !important;
 }
 
 /* Universal Text Visibility Classes */
@@ -347,6 +492,208 @@ body.dark {
 
 .text-adaptive-muted {
   color: #6b7280; /* Medium gray for light mode */
+}
+
+/* Enhanced Navbar Animations */
+.navbar-text {
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.navbar-text:hover::before {
+  left: 100%;
+}
+
+/* Mobile Menu Glass Effect Enhancement */
+.glass-strong {
+  background: rgba(30, 58, 138, 0.15) !important;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(30, 58, 138, 0.2);
+}
+
+.dark .glass-strong {
+  background: rgba(15, 30, 90, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(15, 30, 90, 0.3);
+}
+
+/* Golden tagline styling - Enhanced visibility */
+.golden-tagline {
+  color: #fef3c7 !important; /* Light cream-golden color for better visibility */
+  text-shadow: 
+    0 0 10px rgba(254, 243, 199, 0.6),
+    0 1px 2px rgba(0, 0, 0, 0.3); /* Dual shadow for depth and readability */
+  font-weight: 600; /* Increased font weight */
+  letter-spacing: 0.025em; /* Slight letter spacing for clarity */
+  transition: all 0.3s ease;
+}
+
+.golden-tagline:hover {
+  color: #fef9e7 !important; /* Even lighter on hover */
+  text-shadow: 
+    0 0 15px rgba(254, 249, 231, 0.8),
+    0 1px 3px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px); /* Subtle lift effect */
+}
+
+.dark .golden-tagline {
+  color: #fef3c7 !important; /* Consistent light golden for dark mode */
+  text-shadow: 
+    0 0 12px rgba(254, 243, 199, 0.7),
+    0 1px 2px rgba(0, 0, 0, 0.5); /* Stronger shadow for dark background */
+}
+
+.dark .golden-tagline:hover {
+  color: #fffbeb !important; /* Very light cream on hover */
+  text-shadow: 
+    0 0 18px rgba(255, 251, 235, 0.9),
+    0 1px 3px rgba(0, 0, 0, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Enhanced navbar title styling */
+.navbar-title-light {
+  color: #f8fafc !important; /* Very light gray-white */
+  text-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    0 0 8px rgba(248, 250, 252, 0.2); /* Subtle glow */
+  transition: all 0.3s ease;
+}
+
+.navbar-title-light:hover {
+  color: #fef9e7 !important; /* Light cream on hover */
+  text-shadow: 
+    0 1px 4px rgba(0, 0, 0, 0.4),
+    0 0 12px rgba(254, 249, 231, 0.3);
+}
+
+.dark .navbar-title-light {
+  color: #f1f5f9 !important; /* Slightly off-white for dark mode */
+  text-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.4),
+    0 0 10px rgba(241, 245, 249, 0.25);
+}
+
+.dark .navbar-title-light:hover {
+  color: #fef9e7 !important;
+  text-shadow: 
+    0 1px 4px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(254, 249, 231, 0.4);
+}
+
+/* Hero background image */
+.hero-bg {
+  background-color: #1e40af; /* Fallback color */
+  background-image: 
+    linear-gradient(135deg, rgba(30, 58, 138, 0.3) 0%, rgba(5, 150, 105, 0.2) 50%, rgba(245, 158, 11, 0.2) 100%),
+    url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'),
+    url('https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'); /* Fallback image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.dark .hero-bg {
+  background-image: 
+    linear-gradient(135deg, rgba(15, 30, 90, 0.3) 0%, rgba(5, 150, 105, 0.2) 50%, rgba(245, 158, 11, 0.2) 100%),
+    url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+}
+
+/* Alternative background for mobile (better performance) */
+@media (max-width: 768px) {
+  .hero-bg {
+    background-attachment: scroll;
+    background-image: 
+      linear-gradient(135deg, rgba(30, 58, 138, 0.2) 0%, rgba(5, 150, 105, 0.2) 50%, rgba(245, 158, 11, 0.2) 100%),
+      url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=60');
+  }
+}
+
+/* Enhanced text readability over background */
+.hero-bg .text-gradient {
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.hero-bg h1, .hero-bg h2, .hero-bg h3 {
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 15px rgba(255, 255, 255, 0.15);
+}
+
+.hero-bg p {
+  text-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Dark mode specific text enhancements */
+.dark .hero-bg .text-gradient {
+  text-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(96, 165, 250, 0.3),
+    0 0 50px rgba(52, 211, 153, 0.2);
+  filter: brightness(1.3) contrast(1.2) saturate(1.1);
+}
+
+/* Enhanced dark mode styling for premium yellow gradient in hero */
+.dark .hero-bg .text-gradient-premium {
+  text-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(251, 191, 36, 0.5),
+    0 0 60px rgba(253, 224, 71, 0.4),
+    0 0 80px rgba(250, 204, 21, 0.3);
+  filter: brightness(1.3) contrast(1.2) saturate(1.2) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.dark .hero-bg h1, .dark .hero-bg h2, .dark .hero-bg h3 {
+  color: #f8fafc !important;
+  text-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.7),
+    0 0 25px rgba(248, 250, 252, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.dark .hero-bg p {
+  color: #e2e8f0 !important;
+  text-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(226, 232, 240, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Button enhancements over background */
+.hero-bg button, .hero-bg .btn {
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments for navbar */
+@media (max-width: 768px) {
+  .glass-navbar {
+    background: rgba(30, 58, 138, 0.98) !important;
+  }
+  
+  .dark .glass-navbar {
+    background: rgba(15, 30, 90, 0.99) !important;
+  }
 }
 
 .dark .text-adaptive-muted {

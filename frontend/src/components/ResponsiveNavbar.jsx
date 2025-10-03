@@ -22,7 +22,9 @@ const ResponsiveNavbar = () => {
     { path: '/', label: 'Home', icon: '🏠' },
     { path: '/colleges', label: 'Colleges', icon: '🏛️' },
     { path: '/careers', label: 'Careers', icon: '💼' },
+    { path: '/counselling', label: 'Counselling', icon: '🎯' },
     { path: '/quiz', label: 'Quiz', icon: '📝' },
+    { path: '/scholarships', label: 'Scholarships', icon: '💰' },
     { path: '/dashboard', label: 'Dashboard', icon: '📊' }
   ]
 
@@ -47,17 +49,26 @@ const ResponsiveNavbar = () => {
             {/* Logo - Fully Responsive */}
             <Link to="/" className="flex items-center space-x-1 sm:space-x-2 group flex-shrink-0">
               <motion.div
-                className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center text-lg sm:text-xl md:text-2xl"
+                className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center overflow-hidden"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 transition={{ duration: 0.3 }}
               >
-                👁️
+                <img 
+                  src="https://www.idreameducation.org/wp-content/uploads/2023/09/jk-board-logo.png"
+                  alt="J&K Board Logo"
+                  className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 object-contain"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'block';
+                  }}
+                />
+                <span className="text-lg sm:text-xl md:text-2xl hidden">🎓</span>
               </motion.div>
               <div className="hidden xs:block">
-                <h1 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold navbar-text group-hover:text-primary-600 dark:group-hover:text-primary-300 transition-colors duration-300">
+                <h1 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold navbar-title-light group-hover:text-yellow-200 transition-colors duration-300">
                   AI Career Compass J&K
                 </h1>
-                <p className="text-xs sm:text-sm text-adaptive-muted hidden sm:block">
+                <p className="text-xs sm:text-sm golden-tagline hidden sm:block">
                   Guiding Your Future
                 </p>
               </div>
@@ -69,14 +80,19 @@ const ResponsiveNavbar = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  className={`relative flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
                     location.pathname === item.path
                       ? 'navbar-text-active'
-                      : 'navbar-text hover:bg-gray-100 dark:hover:bg-gray-700'
+                      : 'navbar-text'
                   }`}
                 >
                   <span className="text-sm">{item.icon}</span>
                   <span className="hidden xl:inline">{item.label}</span>
+                  {item.badge && (
+                    <span className="absolute -top-1 -right-1 px-1.5 py-0.5 text-xs bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-bold">
+                      {item.badge}
+                    </span>
+                  )}
                 </Link>
               ))}
             </div>
@@ -87,12 +103,12 @@ const ResponsiveNavbar = () => {
               <SignedOut>
                 <div className="flex items-center space-x-2">
                   <SignInButton mode="modal">
-                    <button className="p-1 sm:p-2 px-2 sm:px-3 rounded-lg text-xs sm:text-sm bg-primary-500 text-white hover:bg-primary-600 transition-all duration-300">
-                      � Sign In
+                    <button className="p-1 sm:p-2 px-2 sm:px-3 rounded-lg text-xs sm:text-sm bg-accent-500 text-white hover:bg-accent-600 transition-all duration-300 transform hover:scale-105 shadow-md">
+                      🔐 Sign In
                     </button>
                   </SignInButton>
                   <SignUpButton mode="modal">
-                    <button className="p-1 sm:p-2 px-2 sm:px-3 rounded-lg text-xs sm:text-sm border border-primary-500 text-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900 transition-all duration-300">
+                    <button className="p-1 sm:p-2 px-2 sm:px-3 rounded-lg text-xs sm:text-sm border-2 border-white text-white hover:bg-white hover:text-blue-800 transition-all duration-300 transform hover:scale-105">
                       📝 Sign Up
                     </button>
                   </SignUpButton>
@@ -159,14 +175,19 @@ const ResponsiveNavbar = () => {
                     key={item.path}
                     to={item.path}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center space-x-3 p-3 sm:p-4 rounded-lg transition-all duration-300 ${
+                    className={`relative flex items-center space-x-3 p-3 sm:p-4 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-md ${
                       location.pathname === item.path
                         ? 'navbar-text-active'
-                        : 'navbar-text hover:bg-gray-100 dark:hover:bg-gray-700'
+                        : 'navbar-text'
                     }`}
                   >
                     <span className="text-lg sm:text-xl">{item.icon}</span>
                     <span className="text-sm sm:text-base font-medium">{item.label}</span>
+                    {item.badge && (
+                      <span className="px-2 py-1 text-xs bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-bold">
+                        {item.badge}
+                      </span>
+                    )}
                   </Link>
                 ))}
               </div>
