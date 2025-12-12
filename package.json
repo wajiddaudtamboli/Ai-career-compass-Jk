@@ -1,5 +1,5 @@
 {
-  "name": "jk-career-navigator",
+  "name": "ai-career-compass-jk",
   "version": "2.0.0",
   "description": "AI-powered career guidance platform for Jammu & Kashmir students",
   "main": "backend/server-enhanced.js",
@@ -14,8 +14,7 @@
     "dev:backend": "cd backend && npm run dev",
     "build": "cd frontend && npm run build",
     "start": "cd backend && npm start",
-    "railway:build": "npm install && cd frontend && npm install && npm run build && cd ../backend && npm install",
-    "railway:start": "cd backend && npm start",
+    "vercel-build": "cd frontend && npm install && npm run build",
     "deploy": "npm run build && vercel --prod",
     "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
     "test": "echo \"Tests coming soon...\" && exit 0"
@@ -28,7 +27,8 @@
     "react",
     "nodejs",
     "vite",
-    "tailwindcss"
+    "tailwindcss",
+    "vercel"
   ],
   "author": "Wajid Daud Tamboli",
   "license": "MIT",

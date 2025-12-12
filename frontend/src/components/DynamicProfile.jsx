@@ -1,34 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useMockUser as useUser } from './ClerkProviderWrapper';
 
 const DynamicProfile = () => {
-  const { user } = useUser();
+  // Mock user data for demo purposes
+  const user = {
+    firstName: 'Guest',
+    lastName: 'User',
+    email: 'guest@example.com',
+    createdAt: new Date().toISOString(),
+    imageUrl: null
+  };
 
-  // Show message if user is not signed in
-  if (!user) {
-    return (
-      <div className="min-h-screen pt-24 px-4 flex items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-center"
-        >
-          <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center">
-            <span className="text-white text-3xl">👤</span>
-          </div>
-          <h2 className="text-2xl font-bold text-gradient mb-2">Profile Access Required</h2>
-          <p className="text-gray-600 dark:text-gray-400">
-            Please sign in to view and manage your profile.
-          </p>
-        </motion.div>
-      </div>
-    );
-  }
-
-  // Profile display using Clerk user data
+  // Profile display
   return (
-    <div className="min-h-screen pt-24 px-4 pb-16">
+    <div className="min-h-screen pt-8 px-4 pb-16">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -55,19 +40,19 @@ const DynamicProfile = () => {
                 <div>
                   <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Full Name</label>
                   <p className="text-lg font-medium">
-                    {user?.firstName} {user?.lastName}
+                    {user.firstName} {user.lastName}
                   </p>
                 </div>
                 
                 <div>
                   <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Email</label>
-                  <p className="text-lg">{user?.primaryEmailAddress?.emailAddress}</p>
+                  <p className="text-lg">{user.email}</p>
                 </div>
                 
                 <div>
                   <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Member Since</label>
                   <p className="text-lg">
-                    {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'Recently joined'}
+                    {new Date(user.createdAt).toLocaleDateString()}
                   </p>
                 </div>
               </div>
@@ -85,24 +70,30 @@ const DynamicProfile = () => {
                 <div>
                   <label className="text-sm font-medium text-gray-600 dark:text-gray-400">Profile Image</label>
                   <div className="flex items-center space-x-3 mt-2">
-                    {user?.imageUrl ? (
+                    {user.imageUrl ? (
                       <img
                         src={user.imageUrl}
                         alt="Profile"
                         className="w-12 h-12 rounded-full"
                       />
                     ) : (
-                      <div className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center">
-                        👤
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 flex items-center justify-center text-white text-xl">
+                        {user.firstName?.charAt(0) || '👤'}
                       </div>
                     )}
                     <span className="text-sm text-gray-600 dark:text-gray-400">
-                      Profile managed by authentication
+                      Guest profile
                     </span>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+            <p className="text-sm text-blue-700 dark:text-blue-300">
+              💡 This is a demo profile. Sign up to save your preferences and track your career journey!
+            </p>
           </div>
         </motion.div>
       </div>

@@ -3,14 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
 import { 
-  SignInButton, 
-  SignUpButton, 
-  UserButton, 
-  SignedIn, 
-  SignedOut,
-  useUser 
-} from '@clerk/clerk-react'
-import { 
   GraduationCap, 
   Home, 
   School, 
@@ -32,7 +24,6 @@ const ResponsiveNavbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { isDark, toggleTheme } = useTheme()
-  const { user } = useUser()
   const location = useLocation()
 
   const navItems = [
@@ -119,39 +110,17 @@ const ResponsiveNavbar = () => {
 
             {/* Right side controls - Fully Responsive */}
             <div className="flex items-center space-x-1 sm:space-x-2">
-              {/* Clerk Authentication */}
-              <SignedOut>
-                <div className="flex items-center space-x-2">
-                  <SignInButton mode="modal">
-                    <button className="flex items-center space-x-1 p-1 sm:p-2 px-2 sm:px-3 rounded-lg text-xs sm:text-sm bg-accent-500 text-white hover:bg-accent-600 transition-all duration-300 transform hover:scale-105 shadow-md">
-                      <LogIn className="w-3 h-3 sm:w-4 sm:h-4" />
-                      <span>Sign In</span>
-                    </button>
-                  </SignInButton>
-                  <SignUpButton mode="modal">
-                    <button className="flex items-center space-x-1 p-1 sm:p-2 px-2 sm:px-3 rounded-lg text-xs sm:text-sm border-2 border-white text-white hover:bg-white hover:text-blue-800 transition-all duration-300 transform hover:scale-105">
-                      <UserPlus className="w-3 h-3 sm:w-4 sm:h-4" />
-                      <span>Sign Up</span>
-                    </button>
-                  </SignUpButton>
-                </div>
-              </SignedOut>
-              
-              <SignedIn>
-                <div className="flex items-center space-x-2">
-                  <span className="hidden sm:flex items-center gap-1 text-sm navbar-text">
-                    <User className="w-4 h-4" />
-                    {user?.firstName || 'User'}
-                  </span>
-                  <UserButton 
-                    appearance={{
-                      elements: {
-                        userButtonAvatarBox: "w-8 h-8 sm:w-10 sm:h-10"
-                      }
-                    }}
-                  />
-                </div>
-              </SignedIn>
+              {/* Auth buttons - Simple links without Clerk */}
+              <div className="flex items-center space-x-2">
+                <Link to="/sign-in" className="flex items-center space-x-1 p-1 sm:p-2 px-2 sm:px-3 rounded-lg text-xs sm:text-sm bg-accent-500 text-white hover:bg-accent-600 transition-all duration-300 transform hover:scale-105 shadow-md">
+                  <LogIn className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span>Sign In</span>
+                </Link>
+                <Link to="/sign-up" className="flex items-center space-x-1 p-1 sm:p-2 px-2 sm:px-3 rounded-lg text-xs sm:text-sm border-2 border-white text-white hover:bg-white hover:text-blue-800 transition-all duration-300 transform hover:scale-105">
+                  <UserPlus className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span>Sign Up</span>
+                </Link>
+              </div>
 
               {/* Theme Toggle */}
               <button
@@ -220,42 +189,16 @@ const ResponsiveNavbar = () => {
 
               {/* Mobile Authentication */}
               <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                <SignedOut>
-                  <div className="flex flex-col gap-3">
-                    <SignInButton mode="modal">
-                      <button className="w-full flex items-center justify-center space-x-2 py-3 px-4 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-all duration-300 font-medium">
-                        <LogIn className="w-5 h-5" />
-                        <span>Sign In to Your Account</span>
-                      </button>
-                    </SignInButton>
-                    <SignUpButton mode="modal">
-                      <button className="w-full flex items-center justify-center space-x-2 py-3 px-4 border border-primary-500 text-primary-500 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900 transition-all duration-300 font-medium">
-                        <UserPlus className="w-5 h-5" />
-                        <span>Create New Account</span>
-                      </button>
-                    </SignUpButton>
-                  </div>
-                </SignedOut>
-                
-                <SignedIn>
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                    <UserButton 
-                      appearance={{
-                        elements: {
-                          userButtonAvatarBox: "w-10 h-10"
-                        }
-                      }}
-                    />
-                    <div>
-                      <p className="font-medium navbar-text">
-                        {user?.firstName} {user?.lastName}
-                      </p>
-                      <p className="text-xs text-gray-600 dark:text-gray-400">
-                        {user?.primaryEmailAddress?.emailAddress}
-                      </p>
-                    </div>
-                  </div>
-                </SignedIn>
+                <div className="flex flex-col gap-3">
+                  <Link to="/sign-in" onClick={() => setIsOpen(false)} className="w-full flex items-center justify-center space-x-2 py-3 px-4 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-all duration-300 font-medium">
+                    <LogIn className="w-5 h-5" />
+                    <span>Sign In to Your Account</span>
+                  </Link>
+                  <Link to="/sign-up" onClick={() => setIsOpen(false)} className="w-full flex items-center justify-center space-x-2 py-3 px-4 border border-primary-500 text-primary-500 rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900 transition-all duration-300 font-medium">
+                    <UserPlus className="w-5 h-5" />
+                    <span>Create New Account</span>
+                  </Link>
+                </div>
               </div>
 
               {/* Mobile Contact Info */}

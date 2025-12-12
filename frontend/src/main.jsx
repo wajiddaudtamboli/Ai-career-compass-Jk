@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
 import { LanguageProvider } from './context/LanguageContext'
-import ClerkProviderWrapper from './components/ClerkProviderWrapper'
 import App from './App.jsx'
 import './index.css'
 
@@ -22,19 +21,17 @@ if (import.meta.env.VITE_ENABLE_PWA === 'true' && 'serviceWorker' in navigator) 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ClerkProviderWrapper>
-      <BrowserRouter
-        future={{
-          v7_startTransition: true,
-          v7_relativeSplatPath: true
-        }}
-      >
-        <ThemeProvider>
-          <LanguageProvider>
-            <App />
-          </LanguageProvider>
-        </ThemeProvider>
-      </BrowserRouter>
-    </ClerkProviderWrapper>
+    <BrowserRouter
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true
+      }}
+    >
+      <ThemeProvider>
+        <LanguageProvider>
+          <App />
+        </LanguageProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
 )

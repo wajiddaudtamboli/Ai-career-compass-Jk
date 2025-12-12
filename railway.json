@@ -1,8 +1,0 @@
-{
-  "build": {
-    "buildCommand": "npm ci --omit=dev && cd frontend && npm ci && npm run build && cd ../backend && npm ci --omit=dev"
-  },
-  "deploy": {
-    "startCommand": "cd backend && npm start"
-  }
-}
