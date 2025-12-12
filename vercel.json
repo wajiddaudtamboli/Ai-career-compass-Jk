@@ -6,5 +6,13 @@
   "routes": [
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  ],
+  "env": {
+    "VITE_BACKEND_URL": "@vite_backend_url",
+    "VITE_APP_VERSION": "2.0.0",
+    "VITE_APP_NAME": "AI Career Compass J&K",
+    "VITE_CONTACT_EMAIL": "wajiddaudtamboli123@gmail.com",
+    "VITE_CONTACT_PHONE": "9667033839",
+    "VITE_ENABLE_PWA": "false"
+  }
 }
